@@ -33,28 +33,16 @@ L2_cache=$(get_lscpu_value "^L2\ cache:" | sed 's/K//')
 total_mem=$(echo "$meminfo_out" | grep -E "^MemTotal:" | awk '{print $2}' | xargs)
 timestamp=$(date -u --rfc-3339=seconds)
 
-# Debug statements
-# TODO: Remove them when finished
-echo $hostname
-echo $cpu_number
-echo $cpu_architecture
-echo $cpu_model
-echo $cpu_mhz
-echo $L2_cache
-echo $total_mem
-echo $timestamp
-
 # Construct the INSERT statement
 insert_stmt="INSERT INTO host_info "
 insert_stmt+="(hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, L2_cache, total_mem, timestamp) VALUES "
-insert_stmt+="(${hostname}, ${cpu_number}, ${cpu_architecture}, ${cpu_model}, ${cpu_mhz}, ${L2_cache}, "
-insert_stmt+="${total_mem}, ${timestamp});"
+insert_stmt+="('${hostname}', '${cpu_number}', '${cpu_architecture}', '${cpu_model}', '${cpu_mhz}', '${L2_cache}', "
+insert_stmt+="'${total_mem}', '${timestamp}');"
 
 # Password needs to be exported as an environment variable in order to authenticate
 export PGPASSWORD=$psql_password
 
 # Insert host info into the database
-# TODO: Fix the syntax error we get with hostname
 psql -h "${psql_host}" -p "${psql_port}" -d "${db_name}" -U "${psql_user}" -c "${insert_stmt}"
 
 exit $?
