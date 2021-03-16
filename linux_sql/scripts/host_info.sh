@@ -39,7 +39,7 @@ insert_stmt+="(hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, L2_ca
 insert_stmt+="('${hostname}', '${cpu_number}', '${cpu_architecture}', '${cpu_model}', '${cpu_mhz}', '${L2_cache}', "
 insert_stmt+="'${total_mem}', '${timestamp}');"
 
-# Password needs to be exported as an environment variable in order to authenticate
+# Password needs to be exported in order to authenticate
 export PGPASSWORD=$psql_password
 
 # Insert host info into the database
