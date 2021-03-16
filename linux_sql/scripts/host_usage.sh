@@ -9,7 +9,8 @@ psql_password=$5
 
 # Validate arguments
 if [ "$#" -ne 5 ]; then
-  echo "Illegal number of parameters"
+  echo "Error: Illegal number of parameters"
+  echo "USAGE: ./host_usage.sh [psql_host] [psql_port] [db_name] [psql_user] [psql_password]"
   exit 1
 fi
 
@@ -17,12 +18,18 @@ fi
 vmstat_out=$(vmstat --unit M -t)
 df_out=$(df -BM /)
 
+# Function to retrieve a value for the given column number from vmstat
+function get_vmstat_info {
+  local column=$1
+  echo "$vmstat_out" | awk "FNR == 3 {print \$$column}"
+}
+
 # Parse hardware usage for desired info
 hostname=$(hostname -f)
 timestamp=$(echo "$vmstat_out" | awk 'FNR == 3 {print $18, $19}')
-memory_free=$(echo "$vmstat_out" | awk 'FNR == 3 {print $4}')
-cpu_idle=$(echo "$vmstat_out" | awk 'FNR == 3 {print $15}')
-cpu_kernel=$(echo "$vmstat_out" | awk 'FNR == 3 {print $14}')
+memory_free=$(get_vmstat_info 4)
+cpu_idle=$(get_vmstat_info 15)
+cpu_kernel=$(get_vmstat_info 14)
 disk_io=$(echo "$vmstat_out" | awk 'FNR == 3 {sum=$9+$10} END {print sum}')
 disk_available=$(echo "$df_out" | awk 'FNR == 2 {print $4}' | sed 's/M//')
 

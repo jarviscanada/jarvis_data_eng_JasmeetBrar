@@ -9,7 +9,8 @@ psql_password=$5
 
 # Validate arguments
 if [ "$#" -ne 5 ]; then
-  echo "Illegal number of parameters"
+  echo "Error: Illegal number of parameters"
+  echo "USAGE: ./host_info.sh [psql_host] [psql_port] [db_name] [psql_user] [psql_password]"
   exit 1
 fi
 
@@ -20,7 +21,7 @@ meminfo_out=$(cat /proc/meminfo)
 # Function to retrieve the value from lscpu using the given regex
 function get_lscpu_value {
   local regex=$1
-  echo "$lscpu_out" | grep -E "${regex}" | sed -e 's/.*://' | xargs
+  echo "$lscpu_out" | grep -E "$regex" | sed -e 's/.*://' | xargs
 }
 
 # Parse hardware specifications for the desired info
@@ -36,13 +37,13 @@ timestamp=$(date -u --rfc-3339=seconds)
 # Construct the INSERT statement
 insert_stmt="INSERT INTO host_info "
 insert_stmt+="(hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, L2_cache, total_mem, timestamp) VALUES "
-insert_stmt+="('${hostname}', '${cpu_number}', '${cpu_architecture}', '${cpu_model}', '${cpu_mhz}', '${L2_cache}', "
-insert_stmt+="'${total_mem}', '${timestamp}');"
+insert_stmt+="('$hostname', '$cpu_number', '$cpu_architecture', '$cpu_model', '$cpu_mhz', '$L2_cache', "
+insert_stmt+="'$total_mem', '$timestamp');"
 
 # Password needs to be exported in order to authenticate
 export PGPASSWORD=$psql_password
 
 # Insert host info into the database
-psql -h "${psql_host}" -p "${psql_port}" -d "${db_name}" -U "${psql_user}" -c "${insert_stmt}"
+psql -h "$psql_host" -p "$psql_port" -d "$db_name" -U "$psql_user" -c "$insert_stmt"
 
 exit $?
