@@ -13,9 +13,9 @@ case $command in
   create)
     # Check if jrvs-psql already exist
     if [[ $(docker container ls -a -f name=jrvs-psql | wc -l) -eq 2 ]]; then
-      echo "Error: jrvs-psql container is already created"
+      echo "Warning: jrvs-psql container is already created"
       echo "USAGE: ./psql_docker.sh start|stop|create [db_username][db_password]"
-      exit 1
+      exit 0
     fi
 
     # Check if username or password is not set
