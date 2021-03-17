@@ -1,5 +1,6 @@
 \c host_agent
 
+-- Create host_info table
 CREATE TABLE IF NOT EXISTS PUBLIC.host_info (
   id SERIAL NOT NULL,
   hostname VARCHAR NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_info (
   CONSTRAINT positive_total_mem CHECK (total_mem > 0)
 );
 
+-- Create host_usage table
 CREATE TABLE IF NOT EXISTS PUBLIC.host_usage (
   timestamp TIMESTAMP WITH TIME ZONE NOT NULL,
   host_id INTEGER NOT NULL REFERENCES host_info (id) ON DELETE CASCADE,
