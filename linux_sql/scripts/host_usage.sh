@@ -34,9 +34,32 @@ disk_io=$(echo "$vmstat_out" | awk 'FNR == 3 {sum=$9+$10} END {print sum}')
 disk_available=$(echo "$df_out" | awk 'FNR == 2 {print $4}' | sed 's/M//')
 
 # Construct the INSERT statement
-insert_stmt="INSERT INTO host_usage (timestamp, host_id, memory_free, cpu_idle, cpu_kernel, disk_io, disk_available) "
-insert_stmt+="VALUES ('$timestamp', (SELECT id FROM host_info WHERE hostname = '$hostname'), '$memory_free', "
-insert_stmt+="'$cpu_idle', '$cpu_kernel', '$disk_io', '$disk_available');"
+insert_stmt=$(cat <<-END
+INSERT INTO host_usage (
+  timestamp, host_id, memory_free, cpu_idle,
+  cpu_kernel, disk_io, disk_available
+)
+VALUES
+  (
+    '$timestamp',
+    (
+      SELECT
+        id
+      FROM
+        host_info
+      WHERE
+        hostname = '$hostname'
+    ),
+    '$memory_free',
+    '$cpu_idle',
+    '$cpu_kernel',
+    '$disk_io',
+    '$disk_available'
+  );
+END
+)
+
+echo "$insert_stmt"
 
 # Password needs to be exported in order to authenticate
 export PGPASSWORD="$psql_password"

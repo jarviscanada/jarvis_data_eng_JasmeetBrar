@@ -35,10 +35,20 @@ total_mem=$(echo "$meminfo_out" | grep -E "^MemTotal:" | awk '{print $2}' | xarg
 timestamp=$(date -u --rfc-3339=seconds)
 
 # Construct the INSERT statement
-insert_stmt="INSERT INTO host_info "
-insert_stmt+="(hostname, cpu_number, cpu_architecture, cpu_model, cpu_mhz, L2_cache, total_mem, timestamp) VALUES "
-insert_stmt+="('$hostname', '$cpu_number', '$cpu_architecture', '$cpu_model', '$cpu_mhz', '$L2_cache', "
-insert_stmt+="'$total_mem', '$timestamp');"
+insert_stmt=$(cat <<-END
+INSERT INTO host_info (
+  hostname, cpu_number, cpu_architecture,
+  cpu_model, cpu_mhz, L2_cache, total_mem,
+  timestamp
+)
+VALUES
+  (
+    '$hostname', '$cpu_number', '$cpu_architecture',
+    '$cpu_model', '$cpu_mhz', '$L2_cache',
+    '$total_mem', '$timestamp'
+  );
+END
+)
 
 # Password needs to be exported in order to authenticate
 export PGPASSWORD=$psql_password
