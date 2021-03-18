@@ -23,14 +23,16 @@ $$
 
 -- Group hosts by hardware info
 SELECT
-  cpu_number,
-  id AS host_id,
-  total_mem
+    FIRST_VALUE(cpu_number) OVER (
+    PARTITION BY cpu_number
+    ORDER BY
+      total_mem DESC
+  ) AS cpu_number,
+    id AS host_id,
+    total_mem
 FROM
-  host_info
-ORDER BY
-  cpu_number ASC,
-  total_mem DESC;
+    host_info;
+
 
 -- Average memory usage
 SELECT
