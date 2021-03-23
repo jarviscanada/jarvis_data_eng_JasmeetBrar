@@ -59,8 +59,6 @@ VALUES
 END
 )
 
-echo "$insert_stmt"
-
 # Password needs to be exported in order to authenticate
 export PGPASSWORD="$psql_password"
 
