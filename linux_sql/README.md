@@ -1,10 +1,9 @@
 # Linux Cluster Monitoring Agent
-This project is under development. Since this project follows the GitFlow, the final work will be merged to the master branch after Team Code Team.
 
-# Introduction
+## Introduction
 In this project I had to implement a monitoring system that keeps track of the host hardware specifications and usage, and stores them in a database. The users of this project are anyone who has a cluster of machines as part of their project, and they need to determine whether they need to scale vertically or horizontally to fit their needs. I have used Bash, Docker, Postgres, and Git in my implementation. As for testing, it was done manually by on a CentOS virtual machine on the Google Cloud Platform.
 
-# Quick Start
+## Quick Start
 ````bash
 # Create and run a psql instance
 ./scripts/psql_docker.sh create [username] [password]
@@ -26,7 +25,7 @@ crontab -e
 * * * * * bash /global/path/to/host_usage.sh localhost 5432 host_agent postgres password > /tmp/host_usage.log
 ````
 
-# Implementation
+## Implementation
 
 The project was implemented in 4 main steps:
 
@@ -53,6 +52,8 @@ The project was implemented in 4 main steps:
     
   The first table gives the user a good reference to go back to should they need to know how many CPUs or total memory that a particular host have. The second table is useful in knowing if any particular host is running out of memory, and this is important to know if the user need to scale up the servers so that it wouldn't cause any interruptions to their business core services in the future. The last table shows the user of any host failures. This is crucial to know so that the user would take immediate action in bringing their servers back online, and take further actions in ensuring that it won't happen again, at least in the immediate future.
 
+- Crontab: The line that was required to add to the crontab as stated in the Quick Start section was to make Linux execute the host_usage.sh script every minute, and log the output of the execution to a temporary file located at `/tmp/host_usage.log`.
+
 ## Script Usage
 ````bash
 # psql_docker.sh usage:
@@ -67,17 +68,43 @@ The project was implemented in 4 main steps:
 
 ## Database Modeling
 
-| Tables | Properties | Constraints |
-| --- | --- | --- |
-| host_info |  |  |
+Note: All properties in both tables cannot be null.
 
-# Test
+`host_info`:
+
+| Properties | Description |
+| --- | --- |
+| id | A unique integer for each host. |
+| hostname | The unique hostname of the machine. |
+| cpu_number | The number of CPUs in the machine. It must be a positive integer. |
+| cpu_architecture | The architecture of the machine's CPU. |
+| cpu_model | The model of the machine's CPU. |
+| cpu_mhz | The clock speed of the machine's CPU in MHz. It must be a positive value. |
+| L2_cache | The amount of L2 cache in KB of the machine's CPU. It must be a non-negative integer. |
+| total_mem | The amount of the total memory in KB that the machine has. It must be a positive integer. |
+| timestamp | The timestamp in UTC time zone of when the data was collected. |
+
+`host_usage`:
+
+| Properties | Description |
+| --- | --- |
+| timestamp | The timestamp in UTC time zone of when the data was collected. |
+| host_id | The id of the host machine. It must exist in the id column of host_info. |
+| memory_free | The amount of free memory in MB that the machine has. It must be a positive integer. |
+| cpu_idle | The percentage of the CPU that is idle. It's bound between 0 and 100. |
+| cpu_kernel | The percentage of the CPU that is used by the kernel. It's bound between 0 and 100. |
+| disk_io | The number of disk I/O that the machine has. It must be a non-negative integer. |
+| disk_available | The amount of space on disk in MB that the machine has available. It must be a non-negative integer. |
+
+## Test
 
 I tested the bash scripts and SQL queries manually in a VM instance on the Google Cloud Platform. The VM instance was running CentOS 7, and it had Docker installed. The result of this testing was that every script and queries ran successfully according to their specifications.
 
-# Improvements
+## Improvements
 
 In this project, there are some key areas that can be improved to overall improve the functionality of the host agent:
 
 - The host agent could be made to detect hardware changes, by having it so that upon every reboot, it runs the host_info.sh script and pass the hardware information to the Postgres database so that it would always have the latest up-to-date hardware specs.
+- The host agent could be made to detect the amount of network bandwidth that machine uses every minute, to see if a machine is approaching its max network bandwidth. The user can use this information to determine if they need to improve the machine's network adapter or scale out their workload to another machine.
+- The analysis of data can be improved for the end user by writing another script that will graph results from Postgres for them. Data from a particular time period can be queried from the host_usage table, and it can be graphed using Python or gnuplot. From there the user has a visual indicator of how the host machines are performing over a certain period of time, and when the machines might struggle or fail. This will overall improve the user's experience in using the host_usage data.
     
