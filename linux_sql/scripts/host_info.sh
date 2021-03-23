@@ -51,7 +51,7 @@ END
 )
 
 # Password needs to be exported in order to authenticate
-export PGPASSWORD=$psql_password
+export PGPASSWORD="$psql_password"
 
 # Insert host info into the database
 psql -h "$psql_host" -p "$psql_port" -d "$db_name" -U "$psql_user" -c "$insert_stmt"
