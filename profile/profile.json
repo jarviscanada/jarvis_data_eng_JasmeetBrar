@@ -19,22 +19,22 @@
       "school_name": "XYZ university"
     }
   ],
-  "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_demo",
+  "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar",
   "highlighted_projects": [
     {
-      "description": "Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.",
-      "git_url": "https://github.com/jarviscanada/jarvis_profile_builder",
-      "name": "Web app for resturant"
+      "description": "Architectured and designed a compiler in an ongoing project that can compile a simplified version of C to Assembly or x86_64. The source files are written in C++ and it uses CMake as a build system. CI/CD is done using GitHub Actions, and it is also used to automate testing done with CTest.",
+      "git_url": "https://github.com/Playjasb2/Simple-C-Compiler",
+      "name": "Simple C Compiler"
     },
     {
-      "description": "Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.",
-      "git_url": null,
-      "name": "Machine Learning"
+      "description": "Worked in a team of four to develop a compiler that can compile a simple programming language into instructions that a VM can execute. The project was primarily done using Java and Apache Ant build system, while JFlex was used as a lexical analyser, and Java CUP was used as a parser. Testing was automated using a Bash script that would run the compiler at various stages and check with our test cases.",
+      "git_url": "https://github.com/Playjasb2/Toy-Language-Compiler",
+      "name": "Simple Toy Language Compiler"
     }
   ],
   "jarvis_projects": [
     {
-      "description": "Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.",
+      "description": "Implemented a monitoring agent that can track the hardware specifications and usage throughout time of host machines and store their data in a database. The monitoring agent is programmed using Bash, and Postgres is used as a database, which would run in a Docker container. Testing was all done on a CentOS 7 virtual machine running on the Google Platform. Every script was tested manually to ensure that they all adhere to their specifications.",
       "git_url": "/linux_sql",
       "name": "Cluster Monitor"
     },
@@ -112,25 +112,33 @@
   ],
   "skills": {
     "competent": [
-      "Donec",
-      "fermentum",
-      "Donec",
-      "fermentum",
-      "Donec"
+      "CSS",
+      "PHP",
+      "Numpy",
+      "NodeJS",
+      "Docker",
+      "MongoDB"
     ],
     "familiar": [
-      "Donec",
-      "fermentum",
-      "fermentum",
-      "fermentum",
-      "fermentum"
+      "VueJS",
+      "Styled Components",
+      "AWS ECS",
+      "DynamoDB",
+      "GitHub Actions"
     ],
     "proficient": [
       "Java",
       "Linux/Bash",
       "RDBMS/SQL",
       "Agile/Scrum",
-      "Git"
+      "Git",
+      "Python",
+      "C",
+      "C++",
+      "HTML",
+      "JavaScript",
+      "TypeScript",
+      "React"
     ]
   },
   "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis a orci ac malesuada. Vivamus ligula elit, viverra eu ante porttitor, blandit convallis augue. Aliquam justo justo, mollis at lacus eu, rutrum finibus est. Vestibulum venenatis purus id accumsan pretium. In efficitur magna nec enim laoreet tincidunt. Ut libero metus, scelerisque nec eros vitae, sagittis pellentesque enim. Donec dictum felis volutpat, vehicula magna eu, imperdiet elit. Phasellus ut velit a massa efficitur faucibus. Sed volutpat, lacus sed sagittis luctus, elit."

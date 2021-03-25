@@ -17,20 +17,28 @@ skills:
     - RDBMS/SQL
     - Agile/Scrum
     - Git
+    - Python
+    - C
+    - C++
+    - HTML
+    - JavaScript
+    - TypeScript
+    - React
   # At least 5 skills
   competent:
-    - Donec
-    - fermentum
-    - Donec
-    - fermentum
-    - Donec
+    - CSS
+    - PHP
+    - Numpy
+    - NodeJS
+    - Docker
+    - MongoDB
   # At least 5 skills
   familiar:
-    - Donec
-    - fermentum
-    - fermentum
-    - fermentum
-    - fermentum
+    - VueJS
+    - Styled Components
+    - AWS ECS
+    - DynamoDB
+    - GitHub Actions
 
 # List of Jarvis projects
 jarvis_projects:
@@ -38,7 +46,7 @@ jarvis_projects:
     git_url: "/linux_sql"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
+    description: Implemented a monitoring agent that can track the hardware specifications and usage throughout time of host machines and store their data in a database. The monitoring agent is programmed using Bash, and Postgres is used as a database, which would run in a Docker container. Testing was all done on a CentOS 7 virtual machine running on the Google Platform. Every script was tested manually to ensure that they all adhere to their specifications.
   - name: "Core Java Apps"
     git_url: "/core_java"
     description:
@@ -65,14 +73,14 @@ jarvis_projects:
 # Feel free to add more projects
 highlighted_projects:
     #project name
-  - name: "Web app for resturant"
+  - name: "Simple C Compiler"
     #URL is optional
-    git_url: "https://github.com/jarviscanada/jarvis_profile_builder"
+    git_url: "https://github.com/Playjasb2/Simple-C-Compiler"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
-    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
-  - name: "Machine Learning"
-    git_url:
-    description: Suspendisse a tincidunt odio. Suspendisse posuere luctus aliquet. Quisque magna tellus, tempor vitae arcu sed, volutpat scelerisque lacus. Aliquam varius pulvinar dapibus. Ut a tincidunt sem. Aenean sollicitudin fringilla erat ut imperdiet. Phasellus fermentum, enim vitae laoreet elementum, eros nisl hendrerit lorem.
+    description: Architectured and designed a compiler in an ongoing project that can compile a simplified version of C to Assembly or x86_64. The source files are written in C++ and it uses CMake as a build system. CI/CD is done using GitHub Actions, and it is also used to automate testing done with CTest.
+  - name: "Simple Toy Language Compiler"
+    git_url: "https://github.com/Playjasb2/Toy-Language-Compiler"
+    description: Worked in a team of four to develop a compiler that can compile a simple programming language into instructions that a VM can execute. The project was primarily done using Java and Apache Ant build system, while JFlex was used as a lexical analyser, and Java CUP was used as a parser. Testing was automated using a Bash script that would run the compiler at various stages and check with our test cases.
 
 #List of professional experience
 #The job description allows hiring managers to understand your job and the technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
