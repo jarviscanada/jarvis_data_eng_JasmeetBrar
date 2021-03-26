@@ -2,21 +2,16 @@
   "education": [
     {
       "awards_achievements": [
-        "Scholarship",
-        "Dean's List (2015, 2016): Ut enim ad minim veniam",
-        "GPA: 3.8/4.0"
+        "Erindale Admission Scholarship",
+        "Dean's List Scholar (2015, 2016, 2017, 2018, 2019)",
+        "MCS Delta Honours Roll (2015, 2016)",
+        "Graduated with High Distinction",
+        "GPA: 3.63/4.0"
       ],
-      "degree": "Bachelor of Applied Sciences",
-      "department": "Electrical and Computer Engineering",
-      "duration": "2012-2016",
-      "school_name": "XYZ university"
-    },
-    {
-      "awards_achievements": null,
-      "degree": "Master of Engineering",
-      "department": "Electrical and Computer Engineering",
-      "duration": "2016-2018",
-      "school_name": "XYZ university"
+      "degree": "Honours Bachelor of Science",
+      "department": "Computer Science Specialist and Minor in Mathematics",
+      "duration": "2015-2020",
+      "school_name": "University of Toronto"
     }
   ],
   "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar",
@@ -27,9 +22,14 @@
       "name": "Simple C Compiler"
     },
     {
-      "description": "Worked in a team of four to develop a compiler that can compile a simple programming language into instructions that a VM can execute. The project was primarily done using Java and Apache Ant build system, while JFlex was used as a lexical analyser, and Java CUP was used as a parser. Testing was automated using a Bash script that would run the compiler at various stages and check with our test cases.",
+      "description": "Worked in a team of four to develop a compiler that can compile a simple programming language into instructions that a VM can execute. The project was primarily done using Java and Apache Ant build system, while JFlex was used as a lexical analyzer, and Java CUP was used as a parser. Testing was automated using a Bash script that would run the compiler at various stages and check with our test cases.",
       "git_url": "https://github.com/Playjasb2/Toy-Language-Compiler",
       "name": "Simple Toy Language Compiler"
+    },
+    {
+      "description": "Collaborated with my colleagues in a team to recreate an online canvas that would be deployed on AWS by implementing an architecture that is responsive and scalable. The server code was done using NodeJS, and Docker was used to containerize the application. AWS technologies such as ECS, Elasticache (Redis), and DynamoDB were used to ensure that it is scalable, data is replicated and is safe, and that the user experience is uncompromised.",
+      "git_url": "https://github.com/Playjasb2/Place",
+      "name": "AWS r/Place Project"
     }
   ],
   "jarvis_projects": [
@@ -77,37 +77,23 @@
   "others": [
     {
       "bullets": [
-        "Udacity Machine Learning (2019)"
-      ],
-      "title": "Certificates"
-    },
-    {
-      "bullets": [
-        "Winner"
+        "MCSS Coding Competition First Place Winner"
       ],
       "title": "Awards"
-    },
-    {
-      "bullets": [
-        "Basketball player",
-        "Competitive gaming",
-        "Volunteer, ABC Food bank: Ut enim ad minim veniam"
-      ],
-      "title": "Activities/Hobbies"
     }
   ],
   "professional_experience": [
     {
       "company": "Jarvis",
-      "description": "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis.",
-      "duration": "2020-present",
+      "description": "Worked on various data projects involving Linux/Bash and Java. Followed agile methodologies and used Git and Git Flow in every project.",
+      "duration": "2021-present",
       "title": "Software Developer"
     },
     {
-      "company": "XYZ Company",
-      "description": "Donec mattis sed justo et sagittis. Vestibulum lacinia nulla ipsum. Curabitur imperdiet nibh vitae leo lacinia laoreet. Nullam accumsan, lectus ut maximus ultricies, augue justo egestas mi, vel bibendum felis.",
+      "company": "Finneo",
+      "description": "Coordinated with the CEO and the software team on determining the best course of action in enhancing their product to be extensible and maintainable. Migrated and ported features from their site designed with PHP using React, Styled Components, and Ant Design framework. Followed agile methodologies and used JIRA as part of the workflow.",
       "duration": "2019",
-      "title": "Tutor"
+      "title": "Software Developer"
     }
   ],
   "skills": {
@@ -141,5 +127,5 @@
       "React"
     ]
   },
-  "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis a orci ac malesuada. Vivamus ligula elit, viverra eu ante porttitor, blandit convallis augue. Aliquam justo justo, mollis at lacus eu, rutrum finibus est. Vestibulum venenatis purus id accumsan pretium. In efficitur magna nec enim laoreet tincidunt. Ut libero metus, scelerisque nec eros vitae, sagittis pellentesque enim. Donec dictum felis volutpat, vehicula magna eu, imperdiet elit. Phasellus ut velit a massa efficitur faucibus. Sed volutpat, lacus sed sagittis luctus, elit."
+  "summary": "I recently graduated from University of Toronto with an Honours Bachelor of Science (Computer Science Specialist and Math Minor), and I intend to venture into software development and data engineering. With my strong background in mathematics, it became natural that I am centered around problem-solving, and being able to construct elegant solutions to various problems. In terms of academics, I have studied operating systems, algorithms, computability, web development, parallel programming, scalable computing, machine learning, deep learning, and much more. I have experience in projects that involving compilers, web programming, scripting, and data visualization; and I have experience working as a software developer in helping a firm migrate its frontend services. Altogether, they make up all the skills and experience that I want to carry forward towards new opportunities. New opportunities that will make use of my skills and allow me to further learn new technologies. I am passionate about this journey that I'm on, and I can't wait to see what's up ahead."
 }
