@@ -5,10 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,14 +66,14 @@ public class JavaGrepImp implements JavaGrep {
         }
 
         List<File> fileList = new ArrayList<>(Arrays.asList(fileArray));
-        Iterator<File> fileListIterator = fileList.iterator();
+        ListIterator<File> fileListIterator = fileList.listIterator();
         List<File> childrenFiles = new ArrayList<>();
 
         while(fileListIterator.hasNext()) {
             File currentFile = fileListIterator.next();
 
             if(currentFile.isDirectory()) {
-                fileList.remove(currentFile);
+                fileListIterator.remove();
                 childrenFiles.addAll(this.listFiles(currentFile.getAbsolutePath()));
             }
         }
