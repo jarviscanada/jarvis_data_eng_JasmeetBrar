@@ -7,4 +7,5 @@ target/
 *.iml
 .idea/
 .eclipse
+dependency-reduced-pom.xml
 .DS_Store
