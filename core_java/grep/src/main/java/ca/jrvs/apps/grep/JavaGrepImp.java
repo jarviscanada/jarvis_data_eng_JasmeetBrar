@@ -13,9 +13,9 @@ public class JavaGrepImp implements JavaGrep {
 
     final Logger logger = LoggerFactory.getLogger(JavaGrep.class);
 
-    private String regex;
-    private String rootPath;
-    private String outFile;
+    protected String regex;
+    protected String rootPath;
+    protected String outFile;
 
     public static void main(String[] args) {
         if (args.length != 3) {
