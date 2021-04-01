@@ -13,8 +13,8 @@ public interface LambdaStreamExc {
      *
      * note: arbitrary number of value will be stored in an array
      *
-     * @param strings
-     * @return
+     * @param strings any strings
+     * @return a stream of strings
      */
     Stream<String> createStrStream(String ... strings);
 
@@ -22,8 +22,8 @@ public interface LambdaStreamExc {
      * Convert all strings to uppercase
      * please use createStrStream
      *
-     * @param strings
-     * @return
+     * @param strings any strings
+     * @return a stream of capitalized strings
      */
     Stream<String> toUpperCase(String ... strings);
 
@@ -33,55 +33,55 @@ public interface LambdaStreamExc {
      * filter(stringStream, "a") will return another stream which no element contains a
      *
      *
-     * @param stringStream
-     * @param pattern
-     * @return
+     * @param stringStream a stream of strings
+     * @param pattern a regex string
+     * @return a stream of string where strings were filtered out using the regex string
      */
     Stream<String> filter(Stream<String> stringStream, String pattern);
 
     /**
      * Create a intStream from a arr[]
-     * @param arr
-     * @return
+     * @param arr an int array
+     * @return an integer stream of the given int array
      */
     IntStream createIntStream(int[] arr);
 
     /**
      * Convert a stream to list
      *
-     * @param stream
-     * @param <E>
-     * @return
+     * @param stream a stream of any type
+     * @param <E> any type
+     * @return the list form of the given stream
      */
     <E> List<E> toList(Stream<E> stream);
 
     /**
      * Convert a intStream to list
-     * @param intStream
-     * @return
+     * @param intStream an integer stream
+     * @return the list form of the given integer stream
      */
     List<Integer> toList(IntStream intStream);
 
     /**
      * Create a IntStream range from start to end inclusive
-     * @param start
-     * @param end
-     * @return
+     * @param start an integer
+     * @param end an integer that is greater than or equal to start
+     * @return an integer stream containing integers from start to end inclusively
      */
     IntStream createIntStream(int start, int end);
 
     /**
      * Convert a intStream to a doubleStream
      * and compute square root of each element
-     * @param intStream
-     * @return
+     * @param intStream an integer stream
+     * @return a double stream of the given integer stream containing the square roots of all the values
      */
     DoubleStream squareRootIntStream(IntStream intStream);
 
     /**
      * filter all even number and return odd numbers from a intStream
-     * @param intStream
-     * @return
+     * @param intStream an integer stream
+     * @return an integer stream containing only the odd numbers from the given integer stream
      */
     IntStream getOdd(IntStream intStream);
 
@@ -103,7 +103,8 @@ public interface LambdaStreamExc {
      *
      * @param prefix prefix str
      * @param suffix suffix str
-     * @return
+     * @return a function that would take a string and print it out along with the given prefix
+     * and suffix
      */
     Consumer<String> getLambdaPrinter(String prefix, String suffix);
 
@@ -120,8 +121,8 @@ public interface LambdaStreamExc {
      * msg:b!
      * msg:c!
      *
-     * @param messages
-     * @param printer
+     * @param messages a string array
+     * @param printer a function that would print a given string
      */
     void printMessages(String[] messages, Consumer<String> printer);
 
@@ -137,8 +138,8 @@ public interface LambdaStreamExc {
      * odd number:3!
      * odd number:5!
      *
-     * @param intStream
-     * @param printer
+     * @param intStream an integer stream
+     * @param printer a function that would print the given strinbg
      */
     void printOdd(IntStream intStream, Consumer<String> printer);
 
@@ -147,8 +148,8 @@ public interface LambdaStreamExc {
      * Please write two solutions and compare difference
      *   - using flatMap
      *
-     * @param ints
-     * @return
+     * @param ints a stream of lists of integers
+     * @return a stream of all the integers from the given stream
      */
     Stream<Integer> flatNestedInt(Stream<List<Integer>> ints);
 
