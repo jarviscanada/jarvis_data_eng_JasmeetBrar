@@ -51,8 +51,8 @@ jarvis_projects:
     git_url: "/core_java"
     description:
       - "Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-      - "JDBC App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
-      - "Grep App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam."
+      - "JDBC App: Created an application that would access a database and perform queries using JDBC. Java and JDBC APIs were used to create the DAO necessary to perform operations with a Postgres database running on Docker, and to segregate these procedures from business side logic."
+      - "Grep App: Constructed a replica of the grep command line utility. Used Java along with Lambda and Stream APIs as part of the implementation, and used Maven to package the application, which was later deployed on Docker Hub using Docker."
   - name: "Springboot App"
     git_url: "/springboot"
     description: ""

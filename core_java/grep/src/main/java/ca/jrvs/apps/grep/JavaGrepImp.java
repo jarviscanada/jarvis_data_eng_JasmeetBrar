@@ -33,7 +33,7 @@ public class JavaGrepImp implements JavaGrep {
         try {
             javaGrepImp.process();
         } catch(Exception e) {
-            javaGrepImp.logger.error(e.getMessage(), e);
+            javaGrepImp.logger.error("Cannot write to output file", e);
         }
     }
 
