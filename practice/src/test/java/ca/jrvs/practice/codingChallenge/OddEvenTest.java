@@ -16,8 +16,6 @@ public class OddEvenTest {
 
     @Test
     public void oddEvenMod() {
-
-
         assertEquals(oddEven.oddEvenMod(1), "odd");
         assertEquals(oddEven.oddEvenMod(2), "even");
         assertEquals(oddEven.oddEvenMod(0), "even");
@@ -27,8 +25,6 @@ public class OddEvenTest {
 
     @Test
     public void oddEvenBit() {
-        OddEven oddEven = new OddEven();
-
         assertEquals(oddEven.oddEvenBit(1), "odd");
         assertEquals(oddEven.oddEvenBit(2), "even");
         assertEquals(oddEven.oddEvenBit(0), "even");

@@ -35,12 +35,17 @@ public class CompareMapsTest {
     @Test
     public void compareMaps1() {
         assertTrue(compareMaps.compareMaps1(new HashMap<String, String>(), new HashMap<>()));
-
         assertTrue(compareMaps.compareMaps1(m1, m1));
-
         assertFalse(compareMaps.compareMaps1(m1, m2));
-
         assertFalse(compareMaps.compareMaps1(m1, m3));
 
+    }
+
+    @Test
+    public void compareMaps2() {
+        assertTrue(compareMaps.compareMaps1(new HashMap<String, String>(), new HashMap<>()));
+        assertTrue(compareMaps.compareMaps1(m1, m1));
+        assertFalse(compareMaps.compareMaps1(m1, m2));
+        assertFalse(compareMaps.compareMaps1(m1, m3));
     }
 }
