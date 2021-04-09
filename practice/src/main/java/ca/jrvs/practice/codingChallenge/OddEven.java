@@ -18,4 +18,8 @@ public class OddEven {
         }
     }
 
+    public String oddEvenBit(int i) {
+        return (i & 1) == 0 ? "even" : "odd";
+    }
+
 }
