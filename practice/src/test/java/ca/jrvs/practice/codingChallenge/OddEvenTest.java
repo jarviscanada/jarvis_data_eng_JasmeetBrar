@@ -1,14 +1,22 @@
 package ca.jrvs.practice.codingChallenge;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class OddEvenTest {
 
+    private static OddEven oddEven;
+
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        oddEven = new OddEven();
+    }
+
     @Test
     public void oddEvenMod() {
-        OddEven oddEven = new OddEven();
+
 
         assertEquals(oddEven.oddEvenMod(1), "odd");
         assertEquals(oddEven.oddEvenMod(2), "even");
