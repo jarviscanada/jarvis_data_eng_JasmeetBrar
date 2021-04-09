@@ -6,7 +6,7 @@ package ca.jrvs.practice.codingChallenge;
 public class OddEven {
 
     /**
-     * Big O: O(1)
+     * Time Complexity: O(1)
      * Justification: It performs just some simple arithmetic operation on one value
      */
     public String oddEvenMod(int i) {
@@ -18,6 +18,10 @@ public class OddEven {
         }
     }
 
+    /**
+     * Time Complexity: O(1)
+     * Justification: It performs just some simple bitwise operation on one value
+     */
     public String oddEvenBit(int i) {
         return (i & 1) == 0 ? "even" : "odd";
     }
