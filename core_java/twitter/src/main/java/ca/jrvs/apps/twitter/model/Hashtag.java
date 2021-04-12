@@ -29,4 +29,13 @@ public class Hashtag {
     public void setEndIndex(int endIndex) {
         this.endIndex = endIndex;
     }
+
+    public int[] getIndices() {
+        return new int[]{startIndex, endIndex};
+    }
+
+    public void setIndices(int[] indices) {
+        startIndex = indices[0];
+        endIndex = indices[1];
+    }
 }

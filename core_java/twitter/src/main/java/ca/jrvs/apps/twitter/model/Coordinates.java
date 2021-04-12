@@ -2,15 +2,24 @@ package ca.jrvs.apps.twitter.model;
 
 public class Coordinates {
 
-    private int[] coordinates;
+    private double latitude;
+    private double longitude;
     private String type;
 
-    public int[] getCoordinates() {
-        return coordinates;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setCoordinates(int[] coordinates) {
-        this.coordinates = coordinates;
+    public void setLatitude(int latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(int longitude) {
+        this.longitude = longitude;
     }
 
     public String getType() {
