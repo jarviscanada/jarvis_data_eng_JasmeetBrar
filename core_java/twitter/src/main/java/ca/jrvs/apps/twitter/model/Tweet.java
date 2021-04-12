@@ -1,24 +1,5 @@
 package ca.jrvs.apps.twitter.model;
 
-/*
-//Simplified Tweet Object
-{
-   "created_at":"Mon Feb 18 21:24:39 +0000 2019",
-   "id":1097607853932564480,
-   "id_str":"1097607853932564480",
-   "text":"test with loc223",
-   "entities":{
-      "hashtags":[],      //Find the object definition in twitter docs
-      "user_mentions":[]  //Find the object definition in twitter docs
-   },
-   "coordinates":null,    //Find the object definition in twitter docs
-   "retweet_count":0,
-   "favorite_count":0,
-   "favorited":false,
-   "retweeted":false
-}
- */
-
 import java.util.Date;
 
 public class Tweet {
