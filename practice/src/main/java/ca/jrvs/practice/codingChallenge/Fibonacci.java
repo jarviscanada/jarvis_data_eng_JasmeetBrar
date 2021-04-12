@@ -23,4 +23,28 @@ public class Fibonacci {
 
         return fib1(n - 1) + fib1(n - 2);
     }
+
+    /**
+     * Time Complexity: O(n)
+     * Justification: We are using dynamic programming along with the bottom-up
+     * approach, where we start off with our base case and build our way up till
+     * the nth Fibonacci number. Since we are just simply going through each case
+     * once without needing to duplicate any work, the time complexity is O(n).
+     */
+    public int fib2(int n) {
+        if(n < 2) {
+            return n;
+        }
+
+        int first = 0;
+        int second = 1;
+
+        for(int i = 2; i <= n; i++) {
+            int third = first + second;
+            first = second;
+            second = third;
+        }
+
+        return second;
+    }
 }
