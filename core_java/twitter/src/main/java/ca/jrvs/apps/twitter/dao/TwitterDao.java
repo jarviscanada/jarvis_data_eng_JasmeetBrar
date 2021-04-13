@@ -2,24 +2,23 @@ package ca.jrvs.apps.twitter.dao;
 
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.model.Tweet;
+import ca.jrvs.apps.twitter.utils.JsonParser;
+import com.google.gdata.util.common.base.PercentEscaper;
 import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 public class TwitterDao implements CrdDao<Tweet, String> {
 
     // URI constants
     private static final String API_BASE_URI = "https://api.twitter.com";
-    private static final String POST_PATH = "/1,1/statuses/update.json";
+    private static final String POST_PATH = "/1.1/statuses/update.json";
     private static final String SHOW_PATH = "/1.1/statuses/show.json";
-    private static final String DELETE_PATH = "/1.1/statuses/destroy";
+    private static final String DELETE_PATH = "/1.1/statuses/destroy/";
 
     // URI symbols
     private static final String QUERY_SYM = "?";
@@ -40,59 +39,79 @@ public class TwitterDao implements CrdDao<Tweet, String> {
     public Tweet create(Tweet entity) {
 
         try {
-            String uriString = getPostUri(entity);
-
+            String uriString = getCreateUri(entity);
             URI uri = new URI(uriString);
-
             HttpResponse response = this.httpHelper.httpPost(uri);
-
             return parseResponseBody(response);
-
         } catch (URISyntaxException e) {
             e.printStackTrace();
-            throw new IllegalStateException("Constructed Tweet's URI contains syntax errors", e);
+            throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
         }
 
     }
 
     @Override
     public Tweet findById(String s) {
-        return null;
+        try {
+            String uriString = getShowUri(s);
+            URI uri = new URI(uriString);
+            HttpResponse response = this.httpHelper.httpGet(uri);
+            return parseResponseBody(response);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
+        }
     }
 
     @Override
     public Tweet deleteById(String s) {
-        return null;
-    }
-
-    private String getPostUri(Tweet tweet) {
-        String uriString = API_BASE_URI + POST_PATH + QUERY_SYM;
-
-        Map<String, String> parameters = new HashMap<String, String>()
-        {{
-           put("status", tweet.getText());
-           put("lat", "" + tweet.getCoordinates().getLatitude());
-           put("long", "" + tweet.getCoordinates().getLongitude());
-
-        }};
-
         try {
-            parameters.put("status", URLEncoder.encode(parameters.get("status"), StandardCharsets.UTF_8.toString()));
-
-            uriString += parameters.keySet().stream()
-                    .map(key -> key + EQUAL + parameters.get(key))
-                    .reduce("", (first, second) -> first + AMPERSAND + second)
-                    .substring(1);
-
-            return uriString;
-
-        } catch (UnsupportedEncodingException e) {
+            String uriString = getDeleteUri(s);
+            URI uri = new URI(uriString);
+            HttpResponse response = this.httpHelper.httpPost(uri);
+            return parseResponseBody(response);
+        } catch (URISyntaxException e) {
             e.printStackTrace();
-            throw new IllegalArgumentException("Given Tweet's query parameters cannot be encoded with UTF-8", e);
+            throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
         }
     }
 
+    private String getCreateUri(Tweet tweet) {
+        String uriString = API_BASE_URI + POST_PATH + QUERY_SYM;
+        PercentEscaper percentEscaper = new PercentEscaper("", false);
+
+        uriString += "status" + EQUAL + percentEscaper.escape(tweet.getText());
+        uriString += AMPERSAND + "lat" + EQUAL + tweet.getCoordinates().getCoordinates().get(0);
+        uriString += AMPERSAND + "long" + EQUAL + tweet.getCoordinates().getCoordinates().get(1);
+
+        return uriString;
+
+    }
+
+    private String getShowUri(String id) {
+        return API_BASE_URI + SHOW_PATH + QUERY_SYM + "id" + EQUAL + id;
+    }
+
+    private String getDeleteUri(String id) {
+        return API_BASE_URI + DELETE_PATH + id + ".json";
+    }
+
     private Tweet parseResponseBody(HttpResponse response) {
-        return null;
+        String jsonString;
+
+        try {
+            jsonString = EntityUtils.toString(response.getEntity());
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Cannot parse the response into a JSON string", e);
+        }
+
+        try {
+            return JsonParser.toObjectFromJson(jsonString, Tweet.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Cannot parse JSON into a Tweet object", e);
+        }
+
     }
 }

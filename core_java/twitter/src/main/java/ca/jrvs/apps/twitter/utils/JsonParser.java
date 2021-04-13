@@ -1,4 +1,4 @@
-package ca.jrvs.apps.twitter.example;
+package ca.jrvs.apps.twitter.utils;
 
 import ca.jrvs.apps.twitter.example.dto.Company;
 import com.fasterxml.jackson.annotation.JsonInclude;

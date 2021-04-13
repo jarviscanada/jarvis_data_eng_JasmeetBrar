@@ -1,23 +1,60 @@
+
 package ca.jrvs.apps.twitter.model;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+    "hashtags",
+    "user_mentions"
+})
+@Generated("jsonschema2pojo")
 public class Entities {
 
-    private Hashtag[] hashtags;
-    private UserMention[] userMentions;
+    @JsonProperty("hashtags")
+    private List<Hashtag> hashtags = null;
+    @JsonProperty("user_mentions")
+    private List<UserMention> userMentions = null;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Hashtag[] getHashtags() {
+    @JsonProperty("hashtags")
+    public List<Hashtag> getHashtags() {
         return hashtags;
     }
 
-    public void setHashtags(Hashtag[] hashtags) {
+    @JsonProperty("hashtags")
+    public void setHashtags(List<Hashtag> hashtags) {
         this.hashtags = hashtags;
     }
 
-    public UserMention[] getUserMentions() {
+    @JsonProperty("user_mentions")
+    public List<UserMention> getUserMentions() {
         return userMentions;
     }
 
-    public void setUserMentions(UserMention[] userMentions) {
+    @JsonProperty("user_mentions")
+    public void setUserMentions(List<UserMention> userMentions) {
         this.userMentions = userMentions;
     }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
+
 }
