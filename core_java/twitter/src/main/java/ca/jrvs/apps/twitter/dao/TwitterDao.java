@@ -42,7 +42,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             String uriString = getCreateUri(entity);
             URI uri = new URI(uriString);
             HttpResponse response = this.httpHelper.httpPost(uri);
-            return parseResponseBody(response);
+            return parseResponseBody(response, HTTP_OK);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
@@ -56,7 +56,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             String uriString = getShowUri(s);
             URI uri = new URI(uriString);
             HttpResponse response = this.httpHelper.httpGet(uri);
-            return parseResponseBody(response);
+            return parseResponseBody(response, HTTP_OK);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
@@ -69,7 +69,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             String uriString = getDeleteUri(s);
             URI uri = new URI(uriString);
             HttpResponse response = this.httpHelper.httpPost(uri);
-            return parseResponseBody(response);
+            return parseResponseBody(response, HTTP_OK);
         } catch (URISyntaxException e) {
             e.printStackTrace();
             throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
@@ -96,14 +96,20 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         return API_BASE_URI + DELETE_PATH + id + ".json";
     }
 
-    private Tweet parseResponseBody(HttpResponse response) {
+    public Tweet parseResponseBody(HttpResponse response, Integer expectedStatusCode) {
         String jsonString;
+
+        int status = response.getStatusLine().getStatusCode();
+
+        if(status != expectedStatusCode) {
+            throw new RuntimeException("Unexpected HTTP status: " + status);
+        }
 
         try {
             jsonString = EntityUtils.toString(response.getEntity());
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Cannot parse the response into a JSON string", e);
+            throw new RuntimeException("Response has no entity", e);
         }
 
         try {

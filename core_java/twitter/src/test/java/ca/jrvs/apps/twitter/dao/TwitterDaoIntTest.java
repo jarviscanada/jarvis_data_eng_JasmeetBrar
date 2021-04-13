@@ -66,8 +66,12 @@ public class TwitterDaoIntTest {
 
     @AfterClass
     public static void tearDown() {
-        twitterDao.deleteById(createTweetId.toString());
-        twitterDao.deleteById(showTweetId.toString());
+        if(createTweetId != null) {
+            twitterDao.deleteById(createTweetId.toString());
+        }
+        if(showTweetId != null) {
+            twitterDao.deleteById(showTweetId.toString());
+        }
     }
 
     @Test
