@@ -17,7 +17,7 @@ public class TwitterDaoIntTest {
     private Long id;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         String consumerKey = System.getenv("consumerKey");
         String consumerSecret = System.getenv("consumerSecret");
         String accessToken = System.getenv("accessToken");
@@ -39,7 +39,7 @@ public class TwitterDaoIntTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         assertNotNull(id);
         Tweet response = twitterDao.deleteById(id.toString());
 
