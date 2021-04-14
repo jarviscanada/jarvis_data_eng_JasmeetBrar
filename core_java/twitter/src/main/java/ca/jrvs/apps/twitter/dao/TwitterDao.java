@@ -37,7 +37,6 @@ public class TwitterDao implements CrdDao<Tweet, String> {
 
     @Override
     public Tweet create(Tweet entity) {
-
         try {
             String uriString = getCreateUri(entity);
             URI uri = new URI(uriString);

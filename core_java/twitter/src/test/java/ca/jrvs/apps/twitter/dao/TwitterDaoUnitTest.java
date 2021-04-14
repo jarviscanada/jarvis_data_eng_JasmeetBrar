@@ -27,8 +27,16 @@ public class TwitterDaoUnitTest extends TestCase {
     @InjectMocks
     TwitterDao dao;
 
+    // Test correct JSON
+    String tweetJsonStr = "{\n"
+            + "\"created_at\":\"Mon Feb 18 21:24:39 +0000 2019\",\n"
+            + "\"id\":1,\n"
+            + "\"text\":\"Test\",\n"
+            + "\"coordinates\":null"
+            + "}";
+
     @Test
-    public void showTweet() throws Exception {
+    public void create() throws Exception {
         // Test failed request
         String hashTag = "#abc";
         String text = "@someone sometext" + hashTag + " " + System.currentTimeMillis();
@@ -54,20 +62,60 @@ public class TwitterDaoUnitTest extends TestCase {
             assertTrue(true);
         }
 
-        // Test correct JSON
-        String tweetJsonStr = "{\n"
-                + "\"created_at\":\"Mon Feb 18 21:24:39 +0000 2019\",\n"
-                + "\"id\":10976076078539,\n"
-                + "\"text\":\"Test\",\n"
-                + "\"coordinates\":null"
-                + "}";
-
         when(mockHelper.httpPost(isNotNull())).thenReturn(null);
         TwitterDao spyDao = Mockito.spy(dao);
         Tweet expectedTweet = JsonParser.toObjectFromJson(tweetJsonStr, Tweet.class);
         // Mock parseResponseBody
         doReturn(expectedTweet).when(spyDao).parseResponseBody(any(), anyInt());
         tweet = spyDao.create(tweet);
+        assertNotNull(tweet);
+        assertNotNull(tweet.getText());
+    }
+
+    @Test
+    public void findById() throws Exception {
+        //Exception is expected here
+        when(mockHelper.httpGet(isNotNull())).thenThrow(new RuntimeException("mock"));
+
+        try {
+            dao.findById("1");
+            fail();
+        } catch(RuntimeException e) {
+            assertTrue(true);
+        }
+
+        Tweet tweet;
+
+        when(mockHelper.httpGet(isNotNull())).thenReturn(null);
+        TwitterDao spyDao = Mockito.spy(dao);
+        Tweet expectedTweet = JsonParser.toObjectFromJson(tweetJsonStr, Tweet.class);
+        // Mock parseResponseBody
+        doReturn(expectedTweet).when(spyDao).parseResponseBody(any(), anyInt());
+        tweet = spyDao.findById("1");
+        assertNotNull(tweet);
+        assertNotNull(tweet.getText());
+    }
+
+    @Test
+    public void deleteById() throws Exception {
+        //Exception is expected here
+        when(mockHelper.httpPost(isNotNull())).thenThrow(new RuntimeException("mock"));
+
+        try {
+            dao.deleteById("1");
+            fail();
+        } catch(RuntimeException e) {
+            assertTrue(true);
+        }
+
+        Tweet tweet;
+
+        when(mockHelper.httpPost(isNotNull())).thenReturn(null);
+        TwitterDao spyDao = Mockito.spy(dao);
+        Tweet expectedTweet = JsonParser.toObjectFromJson(tweetJsonStr, Tweet.class);
+        // Mock parseResponseBody
+        doReturn(expectedTweet).when(spyDao).parseResponseBody(any(), anyInt());
+        tweet = spyDao.deleteById("1");
         assertNotNull(tweet);
         assertNotNull(tweet.getText());
     }
