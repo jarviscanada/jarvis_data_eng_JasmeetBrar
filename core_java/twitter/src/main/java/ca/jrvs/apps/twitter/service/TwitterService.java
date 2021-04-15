@@ -40,8 +40,7 @@ public class TwitterService implements Service {
 
     @Override
     public List<Tweet> deleteTweets(String[] ids) {
-
-        if(Arrays.stream(ids).noneMatch(Validator::validateTweetId)) {
+        if(Arrays.stream(ids).anyMatch(id -> !Validator.validateTweetId(id))) {
             throw new IllegalArgumentException("Given id is invalid");
         }
 

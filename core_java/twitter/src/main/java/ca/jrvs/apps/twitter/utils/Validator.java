@@ -19,8 +19,7 @@ public class Validator {
 
     public static boolean validateTweetId(String id) {
         try {
-            Long.parseLong(id);
-            return true;
+            return Long.parseLong(id) >= 0;
         } catch (NumberFormatException e) {
             return false;
         }
