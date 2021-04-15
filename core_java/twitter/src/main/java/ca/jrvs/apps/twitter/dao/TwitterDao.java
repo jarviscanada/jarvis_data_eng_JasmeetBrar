@@ -43,7 +43,6 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             HttpResponse response = this.httpHelper.httpPost(uri);
             return parseResponseBody(response, HTTP_OK);
         } catch (URISyntaxException e) {
-            e.printStackTrace();
             throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
         }
 
@@ -57,7 +56,6 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             HttpResponse response = this.httpHelper.httpGet(uri);
             return parseResponseBody(response, HTTP_OK);
         } catch (URISyntaxException e) {
-            e.printStackTrace();
             throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
         }
     }
@@ -70,7 +68,6 @@ public class TwitterDao implements CrdDao<Tweet, String> {
             HttpResponse response = this.httpHelper.httpPost(uri);
             return parseResponseBody(response, HTTP_OK);
         } catch (URISyntaxException e) {
-            e.printStackTrace();
             throw new RuntimeException("Constructed Tweet's URI contains syntax errors", e);
         }
     }
@@ -107,14 +104,12 @@ public class TwitterDao implements CrdDao<Tweet, String> {
         try {
             jsonString = EntityUtils.toString(response.getEntity());
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException("Response has no entity", e);
         }
 
         try {
             return JsonParser.toObjectFromJson(jsonString, Tweet.class);
         } catch (IOException e) {
-            e.printStackTrace();
             throw new RuntimeException("Cannot parse JSON into a Tweet object", e);
         }
 
