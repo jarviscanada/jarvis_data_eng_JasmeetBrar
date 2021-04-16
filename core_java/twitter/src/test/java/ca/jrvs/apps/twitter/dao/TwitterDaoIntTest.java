@@ -62,6 +62,8 @@ public class TwitterDaoIntTest {
     }
 
     private void testResponse(Tweet response) {
+        assertNotNull(response);
+
         Double longitude = response.getCoordinates().getCoordinates().get(0);
         Double latitude = response.getCoordinates().getCoordinates().get(1);
 
