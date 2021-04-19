@@ -11,11 +11,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@org.springframework.stereotype.Service
 public class TwitterService implements Service {
 
     private CrdDao<Tweet, String> dao;
 
-//    @Autowired
+    @Autowired
     public TwitterService(CrdDao<Tweet, String> dao) {
         this.dao = dao;
     }

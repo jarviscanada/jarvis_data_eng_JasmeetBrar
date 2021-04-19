@@ -11,13 +11,17 @@ import ca.jrvs.apps.twitter.service.Service;
 import ca.jrvs.apps.twitter.service.TwitterService;
 import ca.jrvs.apps.twitter.utils.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class TwitterCLIApp {
 
     private final Controller controller;
 
+    @Autowired
     public TwitterCLIApp(Controller controller) {
         this.controller = controller;
     }
@@ -39,6 +43,11 @@ public class TwitterCLIApp {
 
     public void run(String[] args) {
         Tweet response;
+
+        if(args.length == 0) {
+            System.out.println("USAGE: post|show|delete [\"status\" latitude:longitude]|[id]|[1 or more ids]");
+            return;
+        }
 
         switch(args[0]) {
             case "post":
