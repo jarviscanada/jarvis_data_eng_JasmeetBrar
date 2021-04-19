@@ -29,10 +29,12 @@ public class TwitterHttpHelper implements HttpHelper {
 
     @Autowired
     public TwitterHttpHelper() {
-        String consumerKey = System.getenv("consumerKey");
-        String consumerSecret = System.getenv("consumerSecret");
-        String accessToken = System.getenv("accessToken");
-        String tokenSecret = System.getenv("tokenSecret");
+        this(
+                System.getenv("consumerKey"),
+                System.getenv("consumerSecret"),
+                System.getenv("accessToken"),
+                System.getenv("tokenSecret")
+        );
     }
 
     public TwitterHttpHelper(String consumerKey, String consumerSecret, String accessToken, String tokenSecret) {

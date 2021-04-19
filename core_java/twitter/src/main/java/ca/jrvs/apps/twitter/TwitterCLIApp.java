@@ -45,7 +45,7 @@ public class TwitterCLIApp {
         Tweet response;
 
         if(args.length == 0) {
-            System.out.println("USAGE: post|show|delete [\"status\" latitude:longitude]|[id]|[1 or more ids]");
+            System.out.println("USAGE: post|show|delete [options]");
             return;
         }
 
@@ -68,7 +68,7 @@ public class TwitterCLIApp {
                 });
                 return;
             default:
-                System.out.println("USAGE: post|show|delete [\"status\" latitude:longitude]|[id]|[1 or more ids]");
+                System.out.println("USAGE: post|show|delete [options]");
                 return;
         }
         try {
