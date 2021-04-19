@@ -9,7 +9,7 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan(value = "ca.jrvs.apps.twitter", excludeFilters = {
-        @ComponentScan.Filter(type= FilterType.ASSIGNABLE_TYPE, value=TwitterCLIBean.class)
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = TwitterCLIBean.class)
 })
 public class TwitterCLIComponentScan {
 
