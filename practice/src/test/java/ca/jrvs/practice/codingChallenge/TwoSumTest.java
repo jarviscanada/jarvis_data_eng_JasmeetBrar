@@ -46,4 +46,36 @@ public class TwoSumTest {
         assertEquals(result3[0], 0);
         assertEquals(result3[1], 1);
     }
+
+    @Test
+    public void twoSum2() {
+        int[] result1 = twoSum.twoSum2(nums1, target1);
+
+        assertEquals(result1[0], 0);
+        assertEquals(result1[1], 1);
+
+        int[] result2 = twoSum.twoSum2(nums2, target2);
+        assertEquals(result2[0], 1);
+        assertEquals(result2[1], 2);
+
+        int[] result3 = twoSum.twoSum2(nums3, target3);
+        assertEquals(result3[0], 0);
+        assertEquals(result3[1], 1);
+    }
+
+    @Test
+    public void twoSum3() {
+        int[] result1 = twoSum.twoSum3(nums1, target1);
+
+        assertEquals(result1[0], 0);
+        assertEquals(result1[1], 1);
+
+        int[] result2 = twoSum.twoSum3(nums2, target2);
+        assertEquals(result2[0], 1);
+        assertEquals(result2[1], 2);
+
+        int[] result3 = twoSum.twoSum3(nums3, target3);
+        assertEquals(result3[0], 0);
+        assertEquals(result3[1], 1);
+    }
 }
