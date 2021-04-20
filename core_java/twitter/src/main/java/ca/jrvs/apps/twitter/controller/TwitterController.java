@@ -43,11 +43,17 @@ public class TwitterController implements Controller {
 
     @Override
     public Tweet showTweet(String[] args) {
-        if(args.length != 2 || !args[0].equals("show")) {
-            throw new RuntimeException("USAGE: TwitterCLIApp show id");
+        if(args.length < 2 || !args[0].equals("show")) {
+            throw new RuntimeException("USAGE: TwitterCLIApp show id [fields]");
         }
 
-        return service.showTweet(args[1], null);
+        String[] fields = null;
+
+        if(args.length > 2) {
+            fields = Arrays.copyOfRange(args, 2, args.length);
+        }
+
+        return service.showTweet(args[1], fields);
     }
 
     @Override
