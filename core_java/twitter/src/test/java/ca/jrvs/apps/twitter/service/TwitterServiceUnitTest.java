@@ -157,10 +157,41 @@ public class TwitterServiceUnitTest {
     }
 
     @Test
+    public void failToShowTweetIfFieldIsInvalid() {
+        String id = "25";
+        try {
+            service.showTweet(id, new String[]{"Hello"});
+            fail();
+        } catch(IllegalArgumentException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
     public void shouldShowTweetIfIdIsValid() {
         String id = "25";
         service.showTweet(id, null);
         verify(dao).findById(eq(id));
+    }
+
+    @Test
+    public void shouldShowTweetWithSpecificFields() {
+        String id = "25";
+        when(dao.findById("25")).thenReturn(tweet);
+        when(tweet.getId()).thenReturn(25L);
+
+        Tweet response = service.showTweet(id, new String[]{"id", "text"});
+        verify(dao).findById(eq(id));
+        assertNotNull(response.getId());
+        assertNotNull(response.getText());
+        assert(response.getIdStr() == null);
+        assert(response.getCoordinates() == null);
+        assert(response.getEntities() == null);
+        assert(response.getCreatedAt() == null);
+        assert(response.getFavoriteCount() == null);
+        assert(response.getRetweetCount() == null);
+        assert(response.getRetweeted() == null);
+        assert(response.getFavorited() == null);
     }
 
     @Test
