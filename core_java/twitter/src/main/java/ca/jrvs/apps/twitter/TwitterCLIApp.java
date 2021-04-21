@@ -37,7 +37,7 @@ public class TwitterCLIApp {
         Service service = new TwitterService(dao);
         Controller controller = new TwitterController(service);
         TwitterCLIApp app = new TwitterCLIApp(controller);
-        
+
         app.run(args);
     }
 
