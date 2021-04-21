@@ -55,17 +55,47 @@ You can of course use the image that I deployed by replacing `<username>` with `
 
 explain each component(app/main, controller, service, DAO) (30-50 words each)
 
-The app is essentially an integration of multiple components: the main component, the controller, the service component, and the DAO component.
+The app is essentially an integration of multiple components: the app/main component, the controller, the service component, and the DAO component.
 
-#### Main Component: 
+#### Application Component
+
+This is essentially a component that constructs all the other objects needed to run this Twitter project. It would construct the `TwitterHttpHelper` object and use it to construct a new `TwitterDao` instance, which will then get used to create a new `TwitterService` instance, and that will be used to create a new `TwitterController` object. The application component also performs some sanity checks on the user's arguments before it passes them into the `Controller` object.
+
+#### Controller
+
+The controller component is the component that would handle the user's argument passed in by the application layer, and performs any transformations needed to have the service layer to provide service for the given inputs. Afterwards, it passes the results back to the application layer. This would involve doing further sanity checks, and passing the correct arguments to one of the service methods that the `Service` object provides.
+
+#### Service Component
+
+The service component is responsible for performing validation upon the assigned parameters to ensure that the request is syntactically correct. It will then call the correct method of its DAO instance and return the results to the upper layers.
+
+#### DAO Component
+
+The DAO component is the component that performs the underlying communication with the Twitter's servers. For the given parameters, the DAO constructs the appropriate URI according to Twitter's REST APIs and uses its `HttpHelper` instance to facilitate the communication to Twitter's servers. It would send the request and receive the response, and then return the result back to the upper layers.
 
 ## Models
-Talk about tweet model
+
+For this project, the `Tweet` model has been made to reflect the actual Tweet JSON object that would be returned by the Twitter's REST APIs. Some modifications were made so that the model would be more concise, and it would sufficiently fit the use case at hand. The diagram below shows the `Tweet` model and its dependencies.
+
+![Twitter Model](./assets/twitter_model.png)
+
 ## Spring
 - How you managed the dependencies using Spring?
 
+The dependencies were managed by having the codebase adhere to the concept of inversion of control, and the dependency injection design pattern. Spring annotations like `@Component`, `@Controller`, `@Service`, and `@Repository` were used to specify that the given class is a `Bean` and its stereotype. The `@Autowire` annotation were used before each constructor to indicate Spring that it must inject the dependencies through the constructor.
+
+Three different approaches in using Spring were tested in this project's implementation. The first way was doing in `TwitterCLIBean` where I would manually create the beans themselves, and inform the Spring framework that it can receive a bean from a method by using the `@Bean` annotation before the method. The second approach avoids me having to do the manual work in creating the objects myself by making use of the annotations that I said earlier. In the `TwitterCLIComponentScan` class I used the `@ComponentScan` annotation to scan through the specified packages and finds the `Beans`, and inject the dependencies for me.
+
+The last approach is the approach that I decided to deploy, and that is to use SpringBoot to manage my dependencies. SpringBoot uses Spring under the hood and allows me to use its functionality without having to write a lot of boilerplate code. I used the `@SpringBootApplication` annotation to help me set up my application using the default settings for Spring. I simply specified where to find the `Beans` and it performs the dependency injection for me.
+
 # Test
-How did you test you app using Junit and mockito?
+How did you test your app using Junit and mockito?
+
+As for testing, I used JUnit 4 and Mockito. For each main component in the application, I wrote an integration test, and some unit tests to sufficiently test their functionality and behaviour. 
+
+Integration tests are when I try to test the components and their submodules together as a group. This would involve me using JUnit as a test runner, and simply running a single test case to collectively test all of a component's functionality. This would use the genuine components that I had implemented, so I would have environment variables setup so that the components will be able to send requests to Twitter's servers.
+
+Unit tests are when I try to test each component individually. For each component I would test, I would have to test each method, and all the possible edge cases that it could have. But because the component can rely on other components, I had to use Mockito to mock those dependencies and their behaviour, so that I would just be testing the component itself in isolation.
 
 ## Deployment
 How did you dockerize your app.
