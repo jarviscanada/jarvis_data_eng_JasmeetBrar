@@ -1,18 +1,22 @@
-package ca.jrvs.apps.twitter.dao;
+package ca.jrvs.apps.twitter.service;
 
+import ca.jrvs.apps.twitter.dao.TwitterDao;
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
 import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import ca.jrvs.apps.twitter.model.Coordinates;
 import ca.jrvs.apps.twitter.model.Tweet;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+public class TwitterServiceIntTest {
 
-public class TwitterDaoIntTest {
-
-    private TwitterDao twitterDao;
+    private TwitterService twitterService;
     private Tweet tweet;
     private Long id;
 
@@ -22,9 +26,9 @@ public class TwitterDaoIntTest {
         String consumerSecret = System.getenv("consumerSecret");
         String accessToken = System.getenv("accessToken");
         String tokenSecret = System.getenv("tokenSecret");
-
         HttpHelper httpHelper = new TwitterHttpHelper(consumerKey, consumerSecret, accessToken, tokenSecret);
-        twitterDao = new TwitterDao(httpHelper);
+        TwitterDao twitterDao = new TwitterDao(httpHelper);
+        twitterService = new TwitterService(twitterDao);
 
         tweet = new Tweet();
         tweet.setText("Test");
@@ -41,29 +45,27 @@ public class TwitterDaoIntTest {
     @After
     public void tearDown() {
         assertNotNull(id);
-        Tweet response = twitterDao.deleteById(id.toString());
+        List<Tweet> response = twitterService.deleteTweets(new String[]{id.toString()});
 
-        // Test that deleting a tweet worked
-        testResponse(response);
+        // Test that deleting tweets worked
+        response.forEach(this::testResponse);
     }
 
     @Test
     public void createAndFindTweet() {
-        Tweet response = twitterDao.create(tweet);
+        Tweet response = twitterService.postTweet(tweet);
 
         // Test that creating a tweet worked
         testResponse(response);
 
         id = response.getId();
-        response = twitterDao.findById(id.toString());
+        response = twitterService.showTweet(id.toString(), null);
 
         // Test that finding a tweet worked
         testResponse(response);
     }
 
     private void testResponse(Tweet response) {
-        assertNotNull(response);
-
         Double longitude = response.getCoordinates().getCoordinates().get(0);
         Double latitude = response.getCoordinates().getCoordinates().get(1);
 
@@ -72,5 +74,6 @@ public class TwitterDaoIntTest {
         assertEquals(latitude, 48.7, 0.1);
         assertEquals(longitude, 2.0, 0.1);
     }
+
 
 }
