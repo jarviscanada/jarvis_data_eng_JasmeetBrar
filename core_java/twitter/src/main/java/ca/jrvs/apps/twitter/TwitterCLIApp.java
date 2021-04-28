@@ -63,7 +63,7 @@ public class TwitterCLIApp {
                     try {
                         System.out.println(JsonParser.toJson(tweet, true, true));
                     } catch (JsonProcessingException e) {
-                        throw new RuntimeException("Cannot process responses into JSON");
+                        throw new RuntimeException("Cannot process responses into JSON", e);
                     }
                 });
                 return;
@@ -74,7 +74,7 @@ public class TwitterCLIApp {
         try {
             System.out.println(JsonParser.toJson(response, true, true));
         } catch(JsonProcessingException e) {
-            throw new RuntimeException("Cannot process response into JSON");
+            throw new RuntimeException("Cannot process response into JSON", e);
         }
     }
 }
