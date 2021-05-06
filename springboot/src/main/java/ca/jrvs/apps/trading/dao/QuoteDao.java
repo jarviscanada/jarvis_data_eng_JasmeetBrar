@@ -128,7 +128,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
         List<Quote> quotes;
         String selectSql = "SELECT * FROM " + TABLE_NAME;
         try {
-            quotes = jdbcTemplate.queryForList(selectSql, Quote.class);
+            quotes = jdbcTemplate.query(selectSql, new BeanPropertyRowMapper<>(Quote.class));
             return quotes;
         } catch(EmptyResultDataAccessException e) {
             return null;
@@ -168,7 +168,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public void deleteAll() {
-        String sql = "TRUNCATE " + TABLE_NAME;
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + ID_COLUMN_NAME + " IN (SELECT " + ID_COLUMN_NAME + " FROM " + TABLE_NAME + ")";
         jdbcTemplate.execute(sql);
     }
 }
