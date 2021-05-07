@@ -32,24 +32,24 @@ public class QuoteDaoIntTest {
     @Before
     public void insertOne() {
         savedQuote.setAskPrice(10d);
-        savedQuote.setAskSize(10);
+        savedQuote.setAskSize(10L);
         savedQuote.setBidPrice(10.2d);
-        savedQuote.setBidSize(10);
+        savedQuote.setBidSize(10L);
         savedQuote.setId("AAPL");
         savedQuote.setLastPrice(10.1d);
         quoteDao.save(savedQuote);
 
         savedQuote2.setAskPrice(12d);
-        savedQuote2.setAskSize(11);
+        savedQuote2.setAskSize(11L);
         savedQuote2.setBidPrice(9d);
-        savedQuote2.setBidSize(45);
+        savedQuote2.setBidSize(45L);
         savedQuote2.setId("GOOGL");
         savedQuote2.setLastPrice(10d);
 
         savedQuote3.setAskPrice(12d);
-        savedQuote3.setAskSize(11);
+        savedQuote3.setAskSize(11L);
         savedQuote3.setBidPrice(9d);
-        savedQuote3.setBidSize(50);
+        savedQuote3.setBidSize(50L);
         savedQuote3.setId("MSFT");
         savedQuote3.setLastPrice(5d);
     }
@@ -67,7 +67,7 @@ public class QuoteDaoIntTest {
         Collection<Quote> allQuotes = (Collection<Quote>) quoteDao.findAll();
         assertEquals(allQuotes.size(), 1);
 
-        savedQuote.setBidSize(100);
+        savedQuote.setBidSize(100L);
         quoteDao.save(savedQuote);
         Optional<Quote> optionalResult = quoteDao.findById("AAPL");
         Quote result = optionalResult.orElse(null);

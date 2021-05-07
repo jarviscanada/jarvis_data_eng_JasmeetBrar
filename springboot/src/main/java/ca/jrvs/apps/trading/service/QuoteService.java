@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -22,6 +24,17 @@ public class QuoteService {
 
     private final QuoteDao quoteDao;
     private final MarketDataDao marketDataDao;
+
+    private static final Map<String, String> iexToQuoteMap = new HashMap<>();
+
+    static {
+        iexToQuoteMap.put("Symbol", "Ticker");
+        iexToQuoteMap.put("LatestPrice", "LastPrice");
+        iexToQuoteMap.put("IexBidPrice", "BidPrice");
+        iexToQuoteMap.put("IexBidSize", "BidSize");
+        iexToQuoteMap.put("IexAskPrice", "AskPrice");
+        iexToQuoteMap.put("IexAskSize", "AskSize");
+    }
 
     @Autowired
     public QuoteService(QuoteDao quoteDao, MarketDataDao marketDataDao) {
@@ -41,7 +54,14 @@ public class QuoteService {
      * @throws IllegalArgumentException for invalid input
      */
     public void updateMarketData() {
-
+        findAllQuotes().stream()
+                .map(Quote::getTicker)
+                .map(marketDataDao::findById)
+                .map(optionalQuote -> optionalQuote.orElseThrow(
+                        () -> new IllegalStateException("One or more tickets were not found from IEX")
+                ))
+                .map(QuoteService::buildQuoteFromIexQuote)
+                .forEach(quoteDao::save);
     }
 
     /**
@@ -50,7 +70,50 @@ public class QuoteService {
      * Default values are set for fields that are missing.
      */
     protected static Quote buildQuoteFromIexQuote(IexQuote iexQuote) {
-        return null;
+        Quote quote = new Quote();
+
+        iexToQuoteMap.keySet().forEach(iexField -> {
+            Method iexFieldGetter;
+            Method quoteFieldSetter;
+            Class<?>[] parameterTypes;
+
+            try {
+                iexFieldGetter = IexQuote.class.getMethod("get" + iexField);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException("Cannot find IexQuote getter for " + iexField, e);
+            }
+
+            try {
+                quoteFieldSetter = Arrays.stream(Quote.class.getMethods())
+                        .filter(method -> method.getName().equals("set" + iexToQuoteMap.get(iexField)))
+                        .findFirst()
+                        .orElseThrow(NoSuchMethodException::new);
+
+                parameterTypes = quoteFieldSetter.getParameterTypes();
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException("Cannot find Quote setter for " + iexToQuoteMap.get(iexField), e);
+            }
+
+            Object value;
+
+            try {
+                value = iexFieldGetter.invoke(iexQuote);
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new RuntimeException("Cannot invoke IexQuote getter method for: " + iexField, e);
+            }
+
+            Class<?> parameterType = parameterTypes[0];
+
+            try {
+                quoteFieldSetter.invoke(quote, parameterType.cast(value));
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                throw new RuntimeException("Cannot invoke Quote setter method for: " + iexToQuoteMap.get(iexField), e);
+            }
+
+        });
+
+        return quote;
+
     }
 
     /**
@@ -60,14 +123,20 @@ public class QuoteService {
      * - persist the quote to db
      */
     public List<Quote> saveQuotes(List<String> tickers) {
-        return null;
+        return tickers.stream().map(this::saveQuote).collect(Collectors.toList());
     }
 
     /**
      * Helper method
      */
     public Quote saveQuote(String ticker) {
-        return null;
+        Optional<IexQuote> optionalIexQuote = marketDataDao.findById(ticker);
+        IexQuote iexQuote = optionalIexQuote.orElseThrow(() ->
+                new RuntimeException(ticker + " does not exist in IEX")
+        );
+
+        Quote quote = buildQuoteFromIexQuote(iexQuote);
+        return quoteDao.save(quote);
     }
 
     /**

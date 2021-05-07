@@ -5,9 +5,9 @@ public class Quote implements Entity<String> {
     private String ticker;
     private Double lastPrice;
     private Double bidPrice;
-    private Integer bidSize;
+    private Long bidSize;
     private Double askPrice;
-    private Integer askSize;
+    private Long askSize;
 
     @Override
     public String getId() {
@@ -43,11 +43,11 @@ public class Quote implements Entity<String> {
         this.bidPrice = bidPrice;
     }
 
-    public Integer getBidSize() {
+    public Long getBidSize() {
         return bidSize;
     }
 
-    public void setBidSize(Integer bidSize) {
+    public void setBidSize(Long bidSize) {
         this.bidSize = bidSize;
     }
 
@@ -59,11 +59,11 @@ public class Quote implements Entity<String> {
         this.askPrice = askPrice;
     }
 
-    public Integer getAskSize() {
+    public Long getAskSize() {
         return askSize;
     }
 
-    public void setAskSize(Integer askSize) {
+    public void setAskSize(Long askSize) {
         this.askSize = askSize;
     }
 }
