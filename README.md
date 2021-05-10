@@ -19,7 +19,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_JasmeetBra
 
 **Core Java Apps** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/core_java)]:
       
-  - Twitter App: Curabitur laoreet tristique leo, eget suscipit nisi. Sed in sodales ex. Maecenas vitae tincidunt dui, et eleifend quam.
+  - Twitter App: Built an application that would use Twitter's REST APIs to provide services to the end-user, such as being able to add, show, or delete Tweets. Java was used to implement all the components, and Spring Boot was used to manage all of the dependencies. JUnit and Mockito were used to test the application, and Maven was used to package it. Deployment was done using Docker.
   - JDBC App: Created an application that would access a database and perform queries using JDBC. Java and JDBC APIs were used to create the DAO necessary to perform operations with a Postgres database running on Docker, and to segregate these procedures from business side logic.
   - Grep App: Constructed a replica of the grep command line utility. Used Java along with Lambda and Stream APIs as part of the implementation, and used Maven to package the application, which was later deployed on Docker Hub using Docker.
 
@@ -44,7 +44,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_JasmeetBra
 
 ## Professional Experiences
 
-**Data Engineer, Jarvis (2021-present)**: Worked on various data projects involving Linux, Bash, Docker, and Postgres. Followed the scrum agile methodology and used Git and Git Flow in every project. Assisted others in resolving setup issues with their environment.
+**Data Engineer, Jarvis (2021-present)**: Worked on various data projects involving Linux, Bash, Docker, Postgres, Java, and Spring Boot. Followed the scrum agile methodology and used Git and Git Flow in every project. Assisted others in project-related issues, and held daily scrum meetings as a scrum leader.
 
 **Software Developer, Finneo (2019)**: Coordinated with the CEO and the software team on determining the best course of action in enhancing their product to be extensible and maintainable. Migrated and ported features from their site designed with PHP using React, Styled Components, and Ant Design framework. Followed the scrum agile methodology and used JIRA as part of the workflow.
 
