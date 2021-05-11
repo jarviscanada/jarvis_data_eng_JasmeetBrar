@@ -2,6 +2,7 @@ package ca.jrvs.apps.trading.dao;
 
 import ca.jrvs.apps.trading.TestConfig;
 import ca.jrvs.apps.trading.model.domain.Account;
+import ca.jrvs.apps.trading.model.domain.Quote;
 import ca.jrvs.apps.trading.model.domain.SecurityOrder;
 import ca.jrvs.apps.trading.model.domain.Trader;
 import org.assertj.core.util.Lists;
@@ -25,10 +26,13 @@ public class SecurityOrderDaoIntTest {
     private SecurityOrderDao securityOrderDao;
 
     @Autowired
-    private static AccountDao accountDao;
+    private AccountDao accountDao;
 
     @Autowired
-    private static TraderDao traderDao;
+    private TraderDao traderDao;
+
+    @Autowired
+    private QuoteDao quoteDao;
 
     @Before
     public void insertOne() {
@@ -47,10 +51,20 @@ public class SecurityOrderDaoIntTest {
         account.setAmount(500f);
         accountDao.save(account);
 
+        Quote quote = new Quote();
+        quote.setId("AAPL");
+        quote.setAskPrice(125d);
+        quote.setAskSize(100L);
+        quote.setBidPrice(58.75d);
+        quote.setBidSize(75L);
+        quote.setLastPrice(65d);
+        quoteDao.save(quote);
+
         SecurityOrder securityOrder = new SecurityOrder();
         securityOrder.setId(1);
         securityOrder.setAccountId(1);
         securityOrder.setStatus("Okay");
+        securityOrder.setTicker("AAPL");
         securityOrder.setPrice(50f);
         securityOrder.setSize(100);
         securityOrder.setNotes("");
@@ -62,6 +76,7 @@ public class SecurityOrderDaoIntTest {
         securityOrderDao.deleteById(1);
         accountDao.deleteAll();
         traderDao.deleteAll();
+        quoteDao.deleteAll();
     }
 
     @Test
