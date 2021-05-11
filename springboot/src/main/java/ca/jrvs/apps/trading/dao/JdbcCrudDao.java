@@ -54,10 +54,9 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
      */
     private <S extends T> void addOne(S entity) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(entity);
-        int row = getSimpleJdbcInsert().execute(parameterSource);
-        if(row != 1) {
-            throw new IncorrectResultSizeDataAccessException("Failed to insert", 1, row);
-        }
+//        int row = getSimpleJdbcInsert().execute(parameterSource);
+        Number id = getSimpleJdbcInsert().executeAndReturnKey(parameterSource);
+        entity.setId((Integer) id);
     }
 
     /**
@@ -127,7 +126,7 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public void deleteById(Integer id) {
-        String sql = "DELETE FROM " + getTableName() + " WHERE " + getIDColumnName() + "=?";
+        String sql = "DELETE FROM " + getTableName() + " WHERE " + getIDColumnName() + " = ?";
         getJdbcTemplate().update(sql, id);
     }
 

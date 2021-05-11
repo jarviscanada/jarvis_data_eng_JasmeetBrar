@@ -52,4 +52,9 @@ public class SecurityOrderDao extends JdbcCrudDao<SecurityOrder> {
     public int updateOne(SecurityOrder entity) {
         throw new UnsupportedOperationException("Not implemented");
     }
+
+    public void deleteByAccountId(Integer accountId) {
+        String sql = "DELETE FROM " + getTableName() + " WHERE account_id = ?";
+        getJdbcTemplate().update(sql, accountId);
+    }
 }
