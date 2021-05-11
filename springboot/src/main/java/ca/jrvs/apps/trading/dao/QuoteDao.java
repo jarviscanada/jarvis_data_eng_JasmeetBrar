@@ -26,7 +26,7 @@ import java.util.stream.StreamSupport;
 public class QuoteDao implements CrudRepository<Quote, String> {
 
     private static final String TABLE_NAME = "quote";
-    private static final String ID_COLUMN_NAME = "ticker";
+    private static final String ID_COLUMN = "ticker";
 
     private static final Logger logger = LoggerFactory.getLogger(QuoteDao.class);
     private JdbcTemplate jdbcTemplate;
@@ -35,7 +35,9 @@ public class QuoteDao implements CrudRepository<Quote, String> {
     @Autowired
     public QuoteDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME);
+        simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName(TABLE_NAME)
+                .usingGeneratedKeyColumns(ID_COLUMN);
     }
 
     @Override
@@ -109,7 +111,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
     @Override
     public Optional<Quote> findById(String id) {
         Quote quote = null;
-        String selectSql = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID_COLUMN_NAME + " =?";
+        String selectSql = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID_COLUMN + " =?";
         try {
             quote = jdbcTemplate.queryForObject(selectSql, BeanPropertyRowMapper.newInstance(Quote.class), id);
             return quote == null ? Optional.empty() : Optional.of(quote);
@@ -152,7 +154,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public void deleteById(String id) {
-        String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + ID_COLUMN_NAME + "=?";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + ID_COLUMN + "=?";
         jdbcTemplate.update(sql, id);
     }
 
@@ -168,7 +170,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
 
     @Override
     public void deleteAll() {
-        String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + ID_COLUMN_NAME + " IN (SELECT " + ID_COLUMN_NAME + " FROM " + TABLE_NAME + ")";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + ID_COLUMN + " IN (SELECT " + ID_COLUMN + " FROM " + TABLE_NAME + ")";
         jdbcTemplate.execute(sql);
     }
 }

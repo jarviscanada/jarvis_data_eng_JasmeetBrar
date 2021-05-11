@@ -20,7 +20,9 @@ public class TraderDao extends JdbcCrudDao<Trader>{
     @Autowired
     public TraderDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
-        simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName(TABLE_NAME);
+        simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
+                .withTableName(TABLE_NAME)
+                .usingGeneratedKeyColumns(ID_COLUMN);
     }
 
     @Override

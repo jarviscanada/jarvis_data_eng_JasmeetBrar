@@ -54,9 +54,8 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
      */
     private <S extends T> void addOne(S entity) {
         SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(entity);
-//        int row = getSimpleJdbcInsert().execute(parameterSource);
         Number id = getSimpleJdbcInsert().executeAndReturnKey(parameterSource);
-        entity.setId((Integer) id);
+        entity.setId(id.intValue());
     }
 
     /**

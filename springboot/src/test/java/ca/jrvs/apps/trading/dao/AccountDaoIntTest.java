@@ -100,10 +100,11 @@ public class AccountDaoIntTest {
 
         accountDao.saveAll(Arrays.asList(account, account2));
 
-        assertTrue(accountDao.existsById(1));
         assertTrue(accountDao.existsById(2));
+        assertTrue(accountDao.existsById(3));
 
         accountDao.deleteById(2);
+        accountDao.deleteById(3);
         traderDao.deleteById(2);
     }
 
