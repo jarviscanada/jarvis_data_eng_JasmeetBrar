@@ -53,4 +53,99 @@ public class MarketDataDaoIntTest {
         assertEquals(ticker, iexQuote.getSymbol());
     }
 
+    @Test
+    public void save() {
+        IexQuote quote = new IexQuote();
+        try {
+            dao.save(quote);
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void saveAll() {
+        IexQuote quote = new IexQuote();
+        try {
+            dao.saveAll(Arrays.asList(quote, quote));
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void existsById() {
+        try {
+            dao.existsById("1");
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void findAll() {
+        try {
+            dao.findAll();
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void count() {
+        try {
+            dao.count();
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void deleteById() {
+        try {
+            dao.deleteById("1");
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void delete() {
+        IexQuote quote = new IexQuote();
+
+        try {
+            dao.delete(quote);
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void deleteAll_With_Iterable() {
+        IexQuote quote = new IexQuote();
+
+        try {
+            dao.deleteAll(Arrays.asList(quote, quote));
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void deleteAll() {
+        try {
+            dao.deleteAll();
+            fail();
+        } catch(UnsupportedOperationException e) {
+            assertTrue(true);
+        }
+    }
 }
