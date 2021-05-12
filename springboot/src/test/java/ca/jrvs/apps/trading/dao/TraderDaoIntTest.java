@@ -29,7 +29,6 @@ public class TraderDaoIntTest {
     @Before
     public void insertOne() {
         savedTrader = new Trader();
-        savedTrader.setId(1);
         savedTrader.setFirstName("Bob");
         savedTrader.setLastName("Bill");
         savedTrader.setCountry("Canada");
@@ -73,7 +72,6 @@ public class TraderDaoIntTest {
 
         Trader savedTrader2;
         savedTrader2 = new Trader();
-        savedTrader2.setId(2);
         savedTrader2.setFirstName("Anne");
         savedTrader2.setLastName("School");
         savedTrader2.setCountry("Canada");
@@ -82,8 +80,8 @@ public class TraderDaoIntTest {
 
         traderDao.saveAll(Arrays.asList(savedTrader, savedTrader2));
 
-        assertTrue(traderDao.existsById(1));
-        assertTrue(traderDao.existsById(2));
+        assertTrue(traderDao.existsById(savedTrader.getId()));
+        assertTrue(traderDao.existsById(savedTrader.getId()));
 
         traderDao.deleteById(2);
     }

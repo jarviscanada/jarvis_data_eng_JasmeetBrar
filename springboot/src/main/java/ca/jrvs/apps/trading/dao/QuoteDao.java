@@ -36,8 +36,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
     public QuoteDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
         simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
-                .withTableName(TABLE_NAME)
-                .usingGeneratedKeyColumns(ID_COLUMN);
+                .withTableName(TABLE_NAME);
     }
 
     @Override

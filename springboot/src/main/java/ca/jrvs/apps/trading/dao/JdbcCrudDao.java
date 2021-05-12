@@ -80,12 +80,15 @@ public abstract class JdbcCrudDao<T extends Entity<Integer>> implements CrudRepo
 
     @Override
     public <S extends T> Iterable<S> saveAll(Iterable<S> iterable) {
-        SqlParameterSource[] entries = StreamSupport.stream(iterable.spliterator(), false)
-                .map(BeanPropertySqlParameterSource::new).toArray(SqlParameterSource[]::new);
-        int[] rows = getSimpleJdbcInsert().executeBatch(entries);
-        if(rows.length != entries.length) {
-            throw new IncorrectResultSizeDataAccessException("Failed to insert", rows.length);
-        }
+//        SqlParameterSource[] entries = StreamSupport.stream(iterable.spliterator(), false)
+//                .map(BeanPropertySqlParameterSource::new).toArray(SqlParameterSource[]::new);
+//        int[] rows = getSimpleJdbcInsert().executeBatch(entries);
+//
+//        if(rows.length != entries.length) {
+//            throw new IncorrectResultSizeDataAccessException("Failed to insert", rows.length);
+//        }
+
+        StreamSupport.stream(iterable.spliterator(), false).forEach(this::save);
 
         return iterable;
     }

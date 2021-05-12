@@ -33,7 +33,6 @@ public class AccountDaoIntTest {
     @Before
     public void insertOne() {
         trader = new Trader();
-        trader.setId(1);
         trader.setFirstName("Bob");
         trader.setLastName("Bill");
         trader.setCountry("Canada");
@@ -43,7 +42,7 @@ public class AccountDaoIntTest {
 
         account = new Account();
         account.setId(1);
-        account.setTraderId(1);
+        account.setTraderId(trader.getId());
         account.setAmount(500f);
         accountDao.save(account);
     }
@@ -85,7 +84,6 @@ public class AccountDaoIntTest {
 
         Trader savedTrader2;
         savedTrader2 = new Trader();
-        savedTrader2.setId(2);
         savedTrader2.setFirstName("Anne");
         savedTrader2.setLastName("School");
         savedTrader2.setCountry("Canada");
@@ -94,8 +92,7 @@ public class AccountDaoIntTest {
         traderDao.save(savedTrader2);
 
         Account account2 = new Account();
-        account2.setId(2);
-        account2.setTraderId(2);
+        account2.setTraderId(savedTrader2.getId());
         account2.setAmount(1000f);
 
         accountDao.saveAll(Arrays.asList(account, account2));
