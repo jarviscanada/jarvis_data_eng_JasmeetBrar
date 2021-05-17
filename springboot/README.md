@@ -1,14 +1,12 @@
 # Spring Boot Project
 
-## Introduction
-
-In order to replace a legacy trading system needed by Jarvis, I was set out to construct a new trading platform that is more scalable and maintainable. This system allows users to fetch stock information for any company, create and manage accounts, and perform operations with quotes . In terms of the technologies, I have used Java to implement the trading system, and I have used Spring Boot to help manage dependencies, and instantiate an Apache Tomcat server for the application to communicate with the client. In terms of testing, I have used JUnit 4 to perform integration testing on various components. As for deployment, I have used Maven to help package my application and its dependencies in an Uber Jar, which would be placed in a final image.
+In order to replace a legacy trading system needed by Jarvis, I was set out to construct a new trading platform that is more scalable and maintainable. This system allows users to fetch stock information for any company, create and manage accounts, and perform operations with quotes. In terms of the technologies, I have used Java to implement the trading system, and I have used Spring Boot to help manage dependencies, and instantiate an Apache Tomcat server for the application to communicate with the client. In terms of testing, I have used JUnit 4 to perform integration testing on various components. As for deployment, I have used Maven to help package my application and its dependencies in an Uber Jar, which would be placed in a final image.
 
 ## Quick Start
 
-To get started, you can pull this repo and ensure that you have Docker installed in your system. You would also need to get an IEX Cloud API key so that the system is able to fetch for the latest stock information.
+To get started, you can pull this repo and ensure that you have Docker installed in your system. You would also need to get an IEX Cloud API key so that the system can fetch the latest stock information.
 
-Once you have that, you can start off by going into the `psql` directory, and execute the following:
+Once you have that, you can start by going into the `psql` directory, and execute the following:
 
 ````Bash
 docker build -t trading-psql .
@@ -50,7 +48,7 @@ docker run -d --name trading-app-dev \
 -p 8080:8080 -t trading-app
 ````
 
-`$PSQL_USER` and `$PSQL_PASSWORD` is the username and password for a Postgres account. `$PGDATA_PATH` is the path to the directory that we are trying to use as a volume for the trading-psql container. `$IEX_PUB_TOKEN` is the public token that would allow us to access IEX Cloud APIs.
+`$PSQL_USER` and `$PSQL_PASSWORD` are the username and password for a Postgres account. `$PGDATA_PATH` is the path to the directory that we are trying to use as a volume for the trading-psql container. `$IEX_PUB_TOKEN` is the public token that would allow us to access IEX Cloud APIs.
 
 
 From here, we can use any application to send our requests to the trading system such as Postman. We can also access all of its APIs using Swagger, by going to: `http://localhost:8080/swagger-ui.html`
@@ -59,23 +57,23 @@ From here, we can use any application to send our requests to the trading system
 
 ## Implementation
 ### Architecture
- 
+
 ![Architecture](./assets/Spring_Boot_Architecture.png)
 
-When a client sends a request to my application, the request will first get received by the Apache Tomcat server, that is a part of Spring Boot. The Tomcat server is a web server that would contain a WebServlet container, an environment for the Java code to execute.
+When a client sends a request to my application, the request will first get received by the Apache Tomcat server, which is a part of Spring Boot. The Tomcat server is a web server that would contain a WebServlet container, an environment for the Java code to execute.
 
 Apache Tomcat will then pass the request down to one of the controllers that is mapped to capture the type of the receiving request in the controller layer. The Trader Account Controller handles requests related to traders, while the Quote Controller handles requests related to quotes. The controller will then handle the request by calling upon the services needed to satisfy the request, and send a response back to the client with the result of the request.
 
-The services that are invoked are all coming from the service layer, which provides abstractions to the actual class that have to directly perform operations with the model itself. The Trader Account Service provides services related to traders, while the Quote Service component provide services related to quotes. The Service objects themselves would call upon their respective DAO component that would manage a particular model.
+The services that are invoked are all coming from the service layer, which provides abstractions to the actual class that has to directly perform operations with the model itself. The Trader Account Service provides services related to traders, while the Quote Service component provides services related to quotes. The Service objects themselves would call upon their respective DAO component that would manage a particular model.
 
-The DAOs (Data Access Objects) are the actual objects that would communicate with a database or a third party API. The database models that we have are: Trader, Account, SecurityOrder, Quote, and Position. These models have their respective DAO that can communicate with the Postgres Database to perform operations on them. JDBCCrudDao is an abstract object that has abstracted the common logic out of all the other DAOs. The MarketDataDao is an exception, since its role is to communicate with IEX Cloud to fetch for the latest stock information. For this DAO, it uses an HTTP Client object to assist in making the request to IEX Cloud API using an API key.
+The DAOs (Data Access Objects) are the actual objects that would communicate with a database or a third-party API. The database models that we have are Trader, Account, SecurityOrder, Quote, and Position. These models have the respective DAO that can communicate with the Postgres Database to perform operations on them. JDBCCrudDao is an abstract object that has abstracted the common logic out of all the other DAOs. The MarketDataDao is an exception since its role is to communicate with IEX Cloud to fetch the latest stock information. For this DAO, it uses an HTTP Client object to assist in making the request to IEX Cloud API using an API key.
 
 ### REST API Usage
 #### Swagger
-Swagger is an interface that allows users to access and use an application's APIs all in the browser, without needing to go into its source code. It's useful in making our APIs clear to the users without adding any complexities. 
+Swagger is an interface that allows users to access and use an application's APIs all in the browser, without needing to go into its source code. It's useful in making our APIs clear to the users without adding any complexities.
 #### Quote Controller
- 
-The Quote Controller allows the users to get the latest stock information for all the quotes they have in their daily list, and update them. It also allows users to add tickers to their own daily list. The market data itself is coming from the IEX Cloud APIs, and the data is cached in a Postgres database.
+
+The Quote Controller allows the users to get the latest stock information for all the quotes they have in their daily list, and update them. It also allows users to add tickers to their daily lists. The market data itself is coming from the IEX Cloud APIs, and the data is cached in a Postgres database.
 
 Endpoints:
 
@@ -87,7 +85,7 @@ Endpoints:
 
 #### Trader Controller
 
-The Trade Account Controller allows the users to traders and account information, and also deposit or withdraw funds from a trader's account.
+The Trade Account Controller allows the users to manage traders and account information, and also deposit or withdraw funds from a trader's account.
 
 Endpoints:
 
@@ -99,7 +97,7 @@ Endpoints:
 
 ## Test
 
-The application was tested using JUnit 4 for pretty much every component. At each level, I would have integration tests setup so that it would test if the component can function correctly when given other real components. The code coverage for all test components are at least 60%.
+The application was tested using JUnit 4 for pretty much every component. At each level, I would have integration tests set up so that it would test if the component can function correctly when given other real components. The code coverage for all tested components is at least 60%.
 
 ## Deployment
 
@@ -107,7 +105,7 @@ In terms of deployment, Docker was used to containerize my Postgres database, an
 
 The Postgres database container was made using the `postgres:9.6-alpine` image, and two SQL scripts were copied to its `docker-entrypoint-initdb.d` directory so that Postgres would load the files if it finds that its database is empty.
 
-The trading app container was made by moving our source code into a `maven:3.6-jdk-8-slim` image, and get Maven to package our application. Then we move the produced Jar file to a `openjdk:8-alpine` image, and set its entrypoint to execute Jar file in a JVM, which will run the web server.
+The trading app container was made by moving our source code into a `maven:3.6-jdk-8-slim` image, and get Maven to package our application. Then we move the produced Jar file to an `openjdk:8-alpine` image and set its entry point to execute Jar file in a JVM, which will run the webserver.
 
 ## Improvements
 
