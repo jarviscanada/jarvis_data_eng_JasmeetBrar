@@ -59,25 +59,22 @@ From here, we can use any application to send our requests to the trading system
 
 ## Implementation
 ### Architecture
-- Draw a component diagram that contains controllers, services, DAOs, SQL, IEX Cloud, WebServlet/Tomcat, HTTP client, and SpringBoot. (you must create your own diagram)
-- briefly explain the following components and services (3-5 sentences for each)
-    - Controller layer (e.g. handles user requests....)
-    - Service layer
-    - DAO layer
-    - SpringBoot: webservlet/TomCat and IoC
-    - PSQL and IEX
-  
+ 
 ![Architecture](./assets/Spring_Boot_Architecture.png)
+
+When a client sends a request to my application, the request will first get received by the Apache Tomcat server, that is a part of Spring Boot. The Tomcat server is a web server that would contain a WebServlet container, an environment for the Java code to execute.
+
+Apache Tomcat will then pass the request down to one of the controllers that is mapped to capture the type of the receiving request in the controller layer. The Trader Account Controller handles requests related to traders, while the Quote Controller handles requests related to quotes. The controller will then handle the request by calling upon the services needed to satisfy the request, and send a response back to the client with the result of the request.
+
+The services that are invoked are all coming from the service layer, which provides abstractions to the actual class that have to directly perform operations with the model itself. The Trader Account Service provides services related to traders, while the Quote Service component provide services related to quotes. The Service objects themselves would call upon their respective DAO component that would manage a particular model.
+
+The DAOs (Data Access Objects) are the actual objects that would communicate with a database or a third party API. The database models that we have are: Trader, Account, SecurityOrder, Quote, and Position. These models have their respective DAO that can communicate with the Postgres Database to perform operations on them. JDBCCrudDao is an abstract object that has abstracted the common logic out of all the other DAOs. The MarketDataDao is an exception, since its role is to communicate with IEX Cloud to fetch for the latest stock information. For this DAO, it uses an HTTP Client object to assist in making the request to IEX Cloud API using an API key.
 
 ### REST API Usage
 #### Swagger
 Swagger is an interface that allows users to access and use an application's APIs all in the browser, without needing to go into its source code. It's useful in making our APIs clear to the users without adding any complexities. 
 #### Quote Controller
-- High-level description for this controller. Where is market data coming from (IEX) and how did you cache the quote data (PSQL). Briefly talk about data from within your app
-- briefly explain each endpoint
-  e.g.
-    - GET `/quote/dailyList`: list all securities that are available to trading in this trading system blah..blah..
-  
+ 
 The Quote Controller allows the users to get the latest stock information for all the quotes they have in their daily list, and update them. It also allows users to add tickers to their own daily list. The market data itself is coming from the IEX Cloud APIs, and the data is cached in a Postgres database.
 
 Endpoints:
@@ -89,8 +86,6 @@ Endpoints:
 - GET `/dailyList`: Get the daily list
 
 #### Trader Controller
-- High-level description for trader controller (e.g. it can manage trader and account information. it can deposit and withdraw fund from a given account)
-- briefly explain each endpoint
 
 The Trade Account Controller allows the users to traders and account information, and also deposit or withdraw funds from a trader's account.
 
