@@ -66,6 +66,8 @@ From here, we can use any application to send our requests to the trading system
     - DAO layer
     - SpringBoot: webservlet/TomCat and IoC
     - PSQL and IEX
+  
+![Architecture](./assets/Spring_Boot_Architecture.png)
 
 ### REST API Usage
 #### Swagger
