@@ -71,23 +71,36 @@ From here, we can use any application to send our requests to the trading system
 
 ### REST API Usage
 #### Swagger
-What's swagger (1-2 sentences, you can copy from swagger docs). Why are we using it or who will benefit from it?
+Swagger is an interface that allows users to access and use an application's APIs all in the browser, without needing to go into its source code. It's useful in making our APIs clear to the users without adding any complexities. 
 #### Quote Controller
 - High-level description for this controller. Where is market data coming from (IEX) and how did you cache the quote data (PSQL). Briefly talk about data from within your app
 - briefly explain each endpoint
   e.g.
     - GET `/quote/dailyList`: list all securities that are available to trading in this trading system blah..blah..
+  
+The Quote Controller allows the users to get the latest stock information for all the quotes they have in their daily list, and update them. It also allows users to add tickers to their own daily list. The market data itself is coming from the IEX Cloud APIs, and the data is cached in a Postgres database.
+
+Endpoints:
+
+- GET `/iex/ticker/{ticker}`: Get the latest stock information for the given ticker
+- PUT `/iexMarketData`: Update the stock information for every quote in the daily list
+- PUT `/`: Add the given quote to the daily list
+- POST `/tickerId/{tickerId}`: Get the quote for the given ticker from IEX Cloud and save the information in the daily list
+- GET `/dailyList`: Get the daily list
+
 #### Trader Controller
 - High-level description for trader controller (e.g. it can manage trader and account information. it can deposit and withdraw fund from a given account)
 - briefly explain each endpoint
-#### Order Controller
-- High-level description for this controller.
-- briefly explain each endpoint
-#### App controller
-- briefly explain each endpoint
-#### Optional(Dashboard controller)
-- High-level description for this controller.
-- briefly explain each endpoint
+
+The Trade Account Controller allows the users to traders and account information, and also deposit or withdraw funds from a trader's account.
+
+Endpoints:
+
+- POST `/firstname/{firstname}/lastname/{lastname}/dob/{dob}/country/{country}/email/{email}`: Add a new trader to the database with the given information.
+- POST `/`: Add a new trader to the database with the given information from the request's body in the JSON format.
+- DELETE `/traderId/{traderId}`: Delete the trader with the given ID, as long as the account is empty, and it has no open positions.
+- PUT `/deposit/traderId/{traderId}/amount/{amount}`: Deposit funds to a trader's account using the supplied trader's ID and amount fields.
+- PUT `/withdraw/traderId/{traderId}/amount/{amount}`: Withdraw funds from a trader's account using the supplied trader's ID and amount fields.
 
 ## Test
 
