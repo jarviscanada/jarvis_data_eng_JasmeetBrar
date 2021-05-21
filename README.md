@@ -23,7 +23,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_JasmeetBra
   - JDBC App: Created an application that would access a database and perform queries using JDBC. Java and JDBC APIs were used to create the DAO necessary to perform operations with a Postgres database running on Docker, and to segregate these procedures from business side logic.
   - Grep App: Constructed a replica of the grep command line utility. Used Java along with Lambda and Stream APIs as part of the implementation, and used Maven to package the application, which was later deployed on Docker Hub using Docker.
 
-**Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/springboot)]: Not Started
+**Springboot App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/springboot)]: Made a trading application that allows users to manage accounts, quotes, and fetch stock information from IEX Cloud. All the components were implemented using Java, and Spring Boot was used to manage the dependencies, and have Apache Tomcat be used as a WebServlet. IEX Cloud APIs were used to retrieve the latest stock information, and PostgreSQL was used to create database schemas. Maven was used to manage the Java dependencies, and testing was done using JUnit 4. The project was then deployed on DockerHub as two docker images, where one image is the Postgres database that would set up all the relations, and the other image is the trading app itself.
 
 **Python Data Analytics** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/python_data_analytics)]: Not Started
 
