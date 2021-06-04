@@ -8,4 +8,5 @@ target/
 .idea/
 .eclipse
 dependency-reduced-pom.xml
+.vscode
 .DS_Store
