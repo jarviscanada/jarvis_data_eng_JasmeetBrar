@@ -9,4 +9,5 @@ target/
 .eclipse
 dependency-reduced-pom.xml
 .vscode
+venv/
 .DS_Store
