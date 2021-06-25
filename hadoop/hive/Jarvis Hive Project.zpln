@@ -1,0 +1,1456 @@
+﻿{
+  "paragraphs": [
+    {
+      "text": "%md\n# Query GS Data\n- Create a hive table (`wdi_gs`) against the wdi_2016 data.\n- Count the number of rows from the wdi_gs table.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:58:15+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624544409740_45581124",
+      "id": "paragraph_1624544409740_45581124",
+      "dateCreated": "2021-06-24T14:20:09+0000",
+      "dateStarted": "2021-06-25T20:58:15+0000",
+      "dateFinished": "2021-06-25T20:58:15+0000",
+      "status": "FINISHED",
+      "focus": true,
+      "$$hashKey": "object:15644",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h1>Query GS Data</h1>\n<ul>\n<li>Create a hive table (<code>wdi_gs</code>) against the wdi_2016 data.</li>\n<li>Count the number of rows from the wdi_gs table.</li>\n</ul>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nDROP TABLE IF EXISTS wdi_gs;\nCREATE EXTERNAL TABLE wdi_gs\n(year INTEGER, countryName STRING, countryCode STRING, indicatorName STRING, indicatorCode STRING, indicatorValue FLOAT)\nROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\nLOCATION 'gs://jarvis_data_eng_jasmeet/datasets/wdi_2016'\nTBLPROPERTIES (\"skip.header.line.count\"=\"1\");",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:58:15+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624544612468_85143794",
+      "id": "paragraph_1624544612468_85143794",
+      "dateCreated": "2021-06-24T14:23:32+0000",
+      "dateStarted": "2021-06-25T20:58:15+0000",
+      "dateFinished": "2021-06-25T20:58:16+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15645",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "Query executed successfully. Affected rows : -1"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nSELECT count(countryName) FROM wdi_gs;",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:58:16+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "_c00",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {
+                          "priority": 0,
+                          "direction": "desc"
+                        },
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_c0": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "_c0",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624544634865_1153822483",
+      "id": "paragraph_1624544634865_1153822483",
+      "dateCreated": "2021-06-24T14:23:54+0000",
+      "dateStarted": "2021-06-25T20:58:16+0000",
+      "dateFinished": "2021-06-25T20:58:34+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15646",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20210625205816_87af549f-ff17-49f2-84b0-ab9a965e5cb3): \nSELECT count(countryName) FROM wdi_gs\nINFO  : Concurrency mode is disabled, not creating a lock manager\nINFO  : Semantic Analysis Completed (retrial = false)\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:_c0, type:bigint, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20210625205816_87af549f-ff17-49f2-84b0-ab9a965e5cb3); Time taken: 0.189 seconds\nINFO  : Concurrency mode is disabled, not creating a lock manager\nINFO  : Executing command(queryId=hive_20210625205816_87af549f-ff17-49f2-84b0-ab9a965e5cb3): \nSELECT count(countryName) FROM wdi_gs\nINFO  : Query ID = hive_20210625205816_87af549f-ff17-49f2-84b0-ab9a965e5cb3\nINFO  : Total jobs = 1\nINFO  : Launching Job 1 out of 1\nINFO  : Starting task [Stage-1:MAPRED] in serial mode\nINFO  : Subscribed to counters: [] for queryId: hive_20210625205816_87af549f-ff17-49f2-84b0-ab9a965e5cb3\nINFO  : Session is already open\nINFO  : Dag name: SELECT count(countryName) FROM wdi_gs (Stage-1)\nINFO  : Status: Running (Executing on YARN cluster with App id application_1624648505599_0006)\n\n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      5          0        0        5       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 0.74 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      5          0        0        5       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 1.25 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      5          0        0        5       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 1.76 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      5          0        0        5       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 2.26 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      5          0        0        5       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 2.76 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        1        4       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 3.27 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        2        3       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 3.77 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        2        3       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 4.27 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        2        3       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 4.78 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        2        3       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 5.28 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 5.78 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 6.28 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 6.79 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 7.29 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 7.79 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 8.30 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      5          0        3        2       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [>>--------------------------] 0%    ELAPSED TIME: 8.80 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      5          1        3        1       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [====>>----------------------] 16%   ELAPSED TIME: 9.30 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      5          1        3        1       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [====>>----------------------] 16%   ELAPSED TIME: 10.31 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      5          1        3        1       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [====>>----------------------] 16%   ELAPSED TIME: 11.31 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      5          1        3        1       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [====>>----------------------] 16%   ELAPSED TIME: 12.31 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      5          1        3        1       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [====>>----------------------] 16%   ELAPSED TIME: 13.32 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ....       container       RUNNING      5          2        3        0       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [========>>------------------] 33%   ELAPSED TIME: 14.32 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ......     container       RUNNING      5          3        2        0       0       0  \nReducer 2        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/02  [=============>>-------------] 50%   ELAPSED TIME: 15.32 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......... container     SUCCEEDED      5          5        0        0       0       0  \nReducer 2        container       RUNNING      1          0        1        0       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 01/02  [=====================>>-----] 83%   ELAPSED TIME: 16.33 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[8A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......... container     SUCCEEDED      5          5        0        0       0       0  \nReducer 2 ...... container     SUCCEEDED      1          1        0        0       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 02/02  [==========================>>] 100%  ELAPSED TIME: 16.60 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "_c0\n21759408\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%md\n## Create table to store GS Data\n- Create an HDFS for the table to be stored in.\n- Create the table in the HDFS.\n- Insert data from wdi_gs into the newly created table.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:58:34+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624544709026_1921904235",
+      "id": "paragraph_1624544709026_1921904235",
+      "dateCreated": "2021-06-24T14:25:09+0000",
+      "dateStarted": "2021-06-25T20:58:34+0000",
+      "dateFinished": "2021-06-25T20:58:34+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15647",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Create table to store GS Data</h2>\n<ul>\n<li>Create an HDFS for the table to be stored in.</li>\n<li>Create the table in the HDFS.</li>\n<li>Insert data from wdi_gs into the newly created table.</li>\n</ul>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%sh\nhdfs dfs -mkdir /user/jasmeetbrar315",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:58:34+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624546458708_823321754",
+      "id": "paragraph_1624546458708_823321754",
+      "dateCreated": "2021-06-24T14:54:18+0000",
+      "dateStarted": "2021-06-25T20:58:34+0000",
+      "dateFinished": "2021-06-25T20:58:37+0000",
+      "status": "ERROR",
+      "$$hashKey": "object:15648",
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "mkdir: `/user/jasmeetbrar315': File exists\n"
+          },
+          {
+            "type": "TEXT",
+            "data": "ExitValue: 1"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nDROP TABLE IF EXISTS wdi_csv_text;\nCREATE EXTERNAL TABLE wdi_csv_text\n(year INTEGER, countryName STRING, countryCode STRING, indicatorName STRING, indicatorCode STRING, indicatorValue FLOAT)\nROW FORMAT DELIMITED FIELDS TERMINATED BY ',' LINES TERMINATED BY '\\n'\nLOCATION 'hdfs:///user/jasmeetbrar315/hive/wdi/wdi_csv_text';",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T14:38:22+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624545446264_1550702702",
+      "id": "paragraph_1624545446264_1550702702",
+      "dateCreated": "2021-06-24T14:37:26+0000",
+      "dateStarted": "2021-06-24T14:38:22+0000",
+      "dateFinished": "2021-06-24T14:38:25+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15649"
+    },
+    {
+      "text": "%hive\nINSERT OVERWRITE TABLE wdi_csv_text\nSELECT * FROM wdi_gs",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T14:39:12+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624545502793_1002431171",
+      "id": "paragraph_1624545502793_1002431171",
+      "dateCreated": "2021-06-24T14:38:22+0000",
+      "dateStarted": "2021-06-24T14:39:13+0000",
+      "dateFinished": "2021-06-24T14:40:59+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15650"
+    },
+    {
+      "text": "%md\n## Benchmarking the cluster\n- Count all the results using Hive with and without cache support.\n- Compare the result with the result from Bash.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:16+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624547196931_230545509",
+      "id": "paragraph_1624547196931_230545509",
+      "dateCreated": "2021-06-24T15:06:36+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15651",
+      "dateFinished": "2021-06-25T20:57:16+0000",
+      "dateStarted": "2021-06-25T20:57:16+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Benchmarking the cluster</h2>\n<ul>\n<li>Count all the results using Hive with and without cache support.</li>\n<li>Compare the result with the result from Bash.</li>\n</ul>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%md\n### Compare Cache Vs. No Cache",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:19+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624547329329_302364464",
+      "id": "paragraph_1624547329329_302364464",
+      "dateCreated": "2021-06-24T15:08:49+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15652",
+      "dateFinished": "2021-06-25T20:57:19+0000",
+      "dateStarted": "2021-06-25T20:57:19+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>Compare Cache Vs. No Cache</h3>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nSELECT COUNT(countryName) FROM wdi_csv_text;",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T15:15:22+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "_c0": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624545553072_1634000166",
+      "id": "paragraph_1624545553072_1634000166",
+      "dateCreated": "2021-06-24T14:39:13+0000",
+      "dateStarted": "2021-06-24T14:47:38+0000",
+      "dateFinished": "2021-06-24T14:48:02+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15653"
+    },
+    {
+      "text": "%md\nIt took much longer to execute the query when we clear the cache, because it doesn't have any old results that it can use to speed up the execution.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T14:48:56+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624545795558_1743884892",
+      "id": "paragraph_1624545795558_1743884892",
+      "dateCreated": "2021-06-24T14:43:15+0000",
+      "dateStarted": "2021-06-24T14:48:56+0000",
+      "dateFinished": "2021-06-24T14:48:56+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15654"
+    },
+    {
+      "text": "%md\n### Compare Bash Vs. Hive",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T15:12:29+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624546136630_1170309854",
+      "id": "paragraph_1624546136630_1170309854",
+      "dateCreated": "2021-06-24T14:48:56+0000",
+      "dateStarted": "2021-06-24T15:12:30+0000",
+      "dateFinished": "2021-06-24T15:12:30+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15655"
+    },
+    {
+      "text": "%sh\ncd ~\nhdfs  dfs -get  hdfs:///user/jasmeetbrar315/hive/wdi/wdi_csv_text .\ncd wdi_csv_text\n#calculate current directory size\ndu -ch .\n#1.8G\ttotal\n\n#clear fs cache\necho 3 | sudo tee /proc/sys/vm/drop_caches\n#bash row count\ndate +%s && cat * | wc && date +%s",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T15:12:31+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sh",
+          "editOnDblClick": false,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sh",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624546571683_2125739910",
+      "id": "paragraph_1624546571683_2125739910",
+      "dateCreated": "2021-06-24T14:56:11+0000",
+      "dateStarted": "2021-06-24T15:12:31+0000",
+      "dateFinished": "2021-06-24T15:12:53+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15656"
+    },
+    {
+      "text": "%md\nIt takes much longer to get the results using bash because we would only be using one machine. Hive allows us to use multiple machines, and it allows us to get the results much faster than bash.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-24T15:12:33+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624546581866_1979144389",
+      "id": "paragraph_1624546581866_1979144389",
+      "dateCreated": "2021-06-24T14:56:21+0000",
+      "dateStarted": "2021-06-24T15:12:33+0000",
+      "dateFinished": "2021-06-24T15:12:33+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15657"
+    },
+    {
+      "text": "%md\n## Parsing CSV using OpenCSV Serde",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:25+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "results": {},
+        "enabled": true,
+        "editorSetting": {}
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624654276459_1159022972",
+      "id": "paragraph_1624654276459_1159022972",
+      "dateCreated": "2021-06-25T20:51:16+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15658",
+      "dateFinished": "2021-06-25T20:57:25+0000",
+      "dateStarted": "2021-06-25T20:57:25+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h2>Parsing CSV using OpenCSV Serde</h2>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%md\n### Issue with regular parsing",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:27+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624654341130_1901977587",
+      "id": "paragraph_1624654341130_1901977587",
+      "dateCreated": "2021-06-25T20:52:21+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15659",
+      "dateFinished": "2021-06-25T20:57:27+0000",
+      "dateStarted": "2021-06-25T20:57:27+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>Issue with regular parsing</h3>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nSELECT distinct(indicatorcode)\nFROM wdi_csv_text\nORDER BY indicatorcode\nLIMIT 20;",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:39+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "indicatorcode": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624547553569_1867171544",
+      "id": "paragraph_1624547553569_1867171544",
+      "dateCreated": "2021-06-24T15:12:33+0000",
+      "dateStarted": "2021-06-25T20:57:39+0000",
+      "dateFinished": "2021-06-25T20:57:59+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15660",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "INFO  : Compiling command(queryId=hive_20210625205739_47c9da4d-4601-4e2e-9241-4559bb63efbf): \nSELECT distinct(indicatorcode)\nFROM wdi_csv_text\nORDER BY indicatorcode\nLIMIT 20\nINFO  : Concurrency mode is disabled, not creating a lock manager\nINFO  : Semantic Analysis Completed (retrial = false)\nINFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:indicatorcode, type:string, comment:null)], properties:null)\nINFO  : Completed compiling command(queryId=hive_20210625205739_47c9da4d-4601-4e2e-9241-4559bb63efbf); Time taken: 0.204 seconds\nINFO  : Concurrency mode is disabled, not creating a lock manager\nINFO  : Executing command(queryId=hive_20210625205739_47c9da4d-4601-4e2e-9241-4559bb63efbf): \nSELECT distinct(indicatorcode)\nFROM wdi_csv_text\nORDER BY indicatorcode\nLIMIT 20\nINFO  : Query ID = hive_20210625205739_47c9da4d-4601-4e2e-9241-4559bb63efbf\nINFO  : Total jobs = 1\nINFO  : Launching Job 1 out of 1\nINFO  : Starting task [Stage-1:MAPRED] in serial mode\nINFO  : Subscribed to counters: [] for queryId: hive_20210625205739_47c9da4d-4601-4e2e-9241-4559bb63efbf\nINFO  : Session is already open\nINFO  : Dag name: SELECT distinct(indicatorcode)\nFROM wdi...20 (Stage-1)\nINFO  : Status: Running (Executing on YARN cluster with App id application_1624648505599_0006)\n\n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      7          0        0        7       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 1.05 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      7          0        0        7       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 1.55 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      7          0        0        7       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 2.06 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container        INITED      7          0        0        7       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 2.56 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        1        6       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 3.06 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        1        6       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 3.57 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        1        6       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 4.07 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        3        4       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 4.58 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        3        4       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 5.08 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        3        4       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 5.59 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        3        4       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 6.09 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        3        4       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 6.60 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1            container       RUNNING      7          0        3        4       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [>>--------------------------] 0%    ELAPSED TIME: 7.10 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .          container       RUNNING      7          1        3        3       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [=>>-------------------------] 6%    ELAPSED TIME: 7.60 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .          container       RUNNING      7          1        3        3       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [=>>-------------------------] 6%    ELAPSED TIME: 8.11 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .          container       RUNNING      7          1        3        3       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [=>>-------------------------] 6%    ELAPSED TIME: 8.61 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .          container       RUNNING      7          1        3        3       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [=>>-------------------------] 6%    ELAPSED TIME: 9.11 s     \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .          container       RUNNING      7          1        3        3       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [=>>-------------------------] 6%    ELAPSED TIME: 10.12 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      7          2        2        3       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [===>>-----------------------] 12%   ELAPSED TIME: 11.13 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      7          2        3        2       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [===>>-----------------------] 12%   ELAPSED TIME: 12.13 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      7          2        3        2       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [===>>-----------------------] 12%   ELAPSED TIME: 13.13 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ..         container       RUNNING      7          2        3        2       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [===>>-----------------------] 12%   ELAPSED TIME: 14.14 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......    container       RUNNING      7          5        2        0       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [========>>------------------] 31%   ELAPSED TIME: 15.14 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......    container       RUNNING      7          5        2        0       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [========>>------------------] 31%   ELAPSED TIME: 16.14 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 ........   container       RUNNING      7          6        1        0       0       0  \nReducer 2        container        INITED      8          0        0        8       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 00/03  [=========>>-----------------] 37%   ELAPSED TIME: 17.14 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......... container     SUCCEEDED      7          7        0        0       0       0  \nReducer 2        container       RUNNING      8          0        3        5       0       0  \nReducer 3        container        INITED      1          0        0        1       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 01/03  [===========>>---------------] 43%   ELAPSED TIME: 18.15 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......... container     SUCCEEDED      7          7        0        0       0       0  \nReducer 2 ...... container     SUCCEEDED      8          8        0        0       0       0  \nReducer 3 ...... container     SUCCEEDED      1          1        0        0       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 03/03  [==========================>>] 100%  ELAPSED TIME: 19.15 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[9A\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[36;1m        VERTICES      MODE        STATUS  TOTAL  COMPLETED  RUNNING  PENDING  FAILED  KILLED  \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2KMap 1 .......... container     SUCCEEDED      7          7        0        0       0       0  \nReducer 2 ...... container     SUCCEEDED      8          8        0        0       0       0  \nReducer 3 ...... container     SUCCEEDED      1          1        0        0       0       0  \n\u001b[2K----------------------------------------------------------------------------------------------\n\u001b[2K\u001b[31;1mVERTICES: 03/03  [==========================>>] 100%  ELAPSED TIME: 19.16 s    \n\u001b[22;0m\u001b[2K----------------------------------------------------------------------------------------------\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "indicatorcode\n % of exports of goods\n %)\"\n (% of urban population)\"\n 15+\n Atlas method (current US$)\"\n Australia (current US$)\"\n Austria (current US$)\"\n Belgium (current US$)\"\n BoP)\"\n Canada (current US$)\"\n Czech Republic (current US$)\"\n DPT (% of children ages 12-23 months)\"\n Denmark (current US$)\"\n Deutsche mark (%)\"\n Euro (%)\"\n European Union institutions (current US$)\"\n Finland (current US$)\"\n France (current US$)\"\n French franc (%)\"\n GDP (LCU per international $)\"\n"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nDROP TABLE IF EXISTS wdi_gs_debug;\nCREATE EXTERNAL TABLE wdi_gs_debug\n(line STRING)\nLOCATION 'hdfs:///user/jasmeetbrar315/hive/wdi/wdi_gs_debug';",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T19:57:51+0000",
+      "progress": 0,
+      "config": {
+        "colWidth": 12,
+        "fontSize": 9,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624547596630_1164207093",
+      "id": "paragraph_1624547596630_1164207093",
+      "dateCreated": "2021-06-24T15:13:16+0000",
+      "dateStarted": "2021-06-25T19:57:51+0000",
+      "dateFinished": "2021-06-25T19:57:51+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15661"
+    },
+    {
+      "text": "%hive\n-- (year INTEGER, countryName STRING, countryCode STRING, indicatorName STRING, indicatorCode STRING, indicatorValue FLOAT)\nINSERT OVERWRITE TABLE wdi_gs_debug\nSELECT CONCAT_WS(', ', CAST(year AS STRING), countryName, countryCode, indicatorName, indicatorCode, CAST(indicatorValue AS STRING)) FROM wdi_gs",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T19:57:53+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624649030033_1826331571",
+      "id": "paragraph_1624649030033_1826331571",
+      "dateCreated": "2021-06-25T19:23:50+0000",
+      "dateStarted": "2021-06-25T19:57:53+0000",
+      "dateFinished": "2021-06-25T19:59:33+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15662"
+    },
+    {
+      "text": "%hive\nSELECT * FROM wdi_gs_debug WHERE line LIKE \"%(\\% of urban population\\)%\";",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:16:00+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "countryname0",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1,
+                      "paginationPageSize": 250
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "names": {
+                      "line": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "countryname",
+                  "index": 0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": []
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624649072223_240889323",
+      "id": "paragraph_1624649072223_240889323",
+      "dateCreated": "2021-06-25T19:24:32+0000",
+      "dateStarted": "2021-06-25T20:00:21+0000",
+      "dateFinished": "2021-06-25T20:00:57+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15663"
+    },
+    {
+      "text": "%md\nThe CSV parsing is failing, because it's trying to separate each field by using commas, but some fields have commas within its value in quotes. Because of that, the parser is misinterpreting the quoted value as being multiple values, which messes up the table.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:57+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624649784816_1183002518",
+      "id": "paragraph_1624649784816_1183002518",
+      "dateCreated": "2021-06-25T19:36:24+0000",
+      "dateStarted": "2021-06-25T20:57:57+0000",
+      "dateFinished": "2021-06-25T20:57:57+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15664",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<p>The CSV parsing is failing, because it&rsquo;s trying to separate each field by using commas, but some fields have commas within its value in quotes. Because of that, the parser is misinterpreting the quoted value as being multiple values, which messes up the table.</p>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%md\n### Parsing using OpenCSV Serde",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:57:59+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624654367548_2069563218",
+      "id": "paragraph_1624654367548_2069563218",
+      "dateCreated": "2021-06-25T20:52:47+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15665",
+      "dateFinished": "2021-06-25T20:57:59+0000",
+      "dateStarted": "2021-06-25T20:57:59+0000",
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "<div class=\"markdown-body\">\n<h3>Parsing using OpenCSV Serde</h3>\n\n</div>"
+          }
+        ]
+      }
+    },
+    {
+      "text": "%hive\nDROP TABLE IF EXISTS wdi_opencsv_gs;\nCREATE EXTERNAL TABLE wdi_opencsv_gs\n(year INTEGER, countryName STRING, countryCode STRING, indicatorName STRING, indicatorCode STRING, indicatorValue FLOAT)\nROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde' -- by default, the separator char is ',' and quote char is '\"'\nLOCATION 'gs://jarvis_data_eng_jasmeet/datasets/wdi_2016'\nTBLPROPERTIES (\"skip.header.line.count\"=\"1\");",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:27:40+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624651754837_844976894",
+      "id": "paragraph_1624651754837_844976894",
+      "dateCreated": "2021-06-25T20:09:14+0000",
+      "dateStarted": "2021-06-25T20:27:40+0000",
+      "dateFinished": "2021-06-25T20:27:40+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15666"
+    },
+    {
+      "text": "%hive\nDROP TABLE IF EXISTS wdi_opencsv_text;\nCREATE EXTERNAL TABLE wdi_opencsv_text\n(year INTEGER, countryName STRING, countryCode STRING, indicatorName STRING, indicatorCode STRING, indicatorValue FLOAT)\nROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'\nSTORED AS TEXTFILE\nLOCATION 'hdfs:///user/jasmeetbrar315/hive/wdi/wdi_opencsv_text';",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:30:51+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624652579719_1824540117",
+      "id": "paragraph_1624652579719_1824540117",
+      "dateCreated": "2021-06-25T20:22:59+0000",
+      "dateStarted": "2021-06-25T20:30:51+0000",
+      "dateFinished": "2021-06-25T20:30:52+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15667"
+    },
+    {
+      "text": "%hive\nINSERT OVERWRITE TABLE wdi_opencsv_text\nSELECT * FROM wdi_opencsv_gs",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:31:38+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624652970170_344986796",
+      "id": "paragraph_1624652970170_344986796",
+      "dateCreated": "2021-06-25T20:29:30+0000",
+      "dateStarted": "2021-06-25T20:31:38+0000",
+      "dateFinished": "2021-06-25T20:33:47+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15668"
+    },
+    {
+      "text": "%hive\nSELECT distinct(indicatorcode)\nFROM wdi_opencsv_text\nORDER BY indicatorcode\nLIMIT 20;",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:47:27+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "indicatorcode": "string"
+                    },
+                    "updated": true
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624653098905_1108584695",
+      "id": "paragraph_1624653098905_1108584695",
+      "dateCreated": "2021-06-25T20:31:38+0000",
+      "dateStarted": "2021-06-25T20:34:41+0000",
+      "dateFinished": "2021-06-25T20:36:12+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15669"
+    },
+    {
+      "text": "%md\nIt takes longer to get data from `wdi_opencsv_text` because it's using the OpenCSVSerde which has to do extra working in parsing the data for quotes and delimiters so that it's actually parsing the CSV correctly unlike before when we were not using it.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:48:20+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": true,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624653281893_1919278760",
+      "id": "paragraph_1624653281893_1919278760",
+      "dateCreated": "2021-06-25T20:34:41+0000",
+      "dateStarted": "2021-06-25T20:40:23+0000",
+      "dateFinished": "2021-06-25T20:40:23+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15670"
+    },
+    {
+      "text": "%hive\nDESCRIBE FORMATTED wdi_opencsv_text;\nDESCRIBE FORMATTED wdi_csv_text;",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:47:28+0000",
+      "progress": 0,
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "editorHide": false,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "col_name": "string",
+                      "data_type": "string",
+                      "comment": "string"
+                    },
+                    "updated": true
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 300,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "col_name": "string",
+                      "data_type": "string",
+                      "comment": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624653623666_1305411082",
+      "id": "paragraph_1624653623666_1305411082",
+      "dateCreated": "2021-06-25T20:40:23+0000",
+      "dateStarted": "2021-06-25T20:41:28+0000",
+      "dateFinished": "2021-06-25T20:41:28+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15671"
+    },
+    {
+      "text": "%md\nThe issue with using OpenCSV Serde is that it always convert all the columns into the String type. To get around this, we would need to make a view on top that can cast some of the columns to our desired type.",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:54:33+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionSupport": false
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624654409869_935427869",
+      "id": "paragraph_1624654409869_935427869",
+      "dateCreated": "2021-06-25T20:53:29+0000",
+      "status": "READY",
+      "$$hashKey": "object:15672"
+    },
+    {
+      "text": "%hive\nDROP VIEW IF EXISTS wdi_opencsv_text_view;\n\nCREATE VIEW IF NOT EXISTS wdi_opencsv_text_view\nAS\nSELECT CAST(year AS INTEGER), countryName, countryCode, indicatorName, indicatorCode, CAST(indicatorValue AS FLOAT)\nFROM wdi_opencsv_text;",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:49:49+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624653669620_196547779",
+      "id": "paragraph_1624653669620_196547779",
+      "dateCreated": "2021-06-25T20:41:09+0000",
+      "dateStarted": "2021-06-25T20:49:49+0000",
+      "dateFinished": "2021-06-25T20:49:49+0000",
+      "status": "FINISHED",
+      "$$hashKey": "object:15673"
+    },
+    {
+      "text": "%md\n## 2015 Canada GDP Growth HQL",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:55:27+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "text",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/text",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624654206519_1464126551",
+      "id": "paragraph_1624654206519_1464126551",
+      "dateCreated": "2021-06-25T20:50:06+0000",
+      "status": "READY",
+      "$$hashKey": "object:15674"
+    },
+    {
+      "text": "%hive\n",
+      "user": "anonymous",
+      "dateUpdated": "2021-06-25T20:56:00+0000",
+      "progress": 0,
+      "config": {
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionSupport": true
+        },
+        "colWidth": 12,
+        "editorMode": "ace/mode/sql",
+        "fontSize": 9,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "runtimeInfos": {},
+      "progressUpdateIntervalMs": 500,
+      "jobName": "paragraph_1624654527662_1735795020",
+      "id": "paragraph_1624654527662_1735795020",
+      "dateCreated": "2021-06-25T20:55:27+0000",
+      "status": "READY",
+      "$$hashKey": "object:15675"
+    }
+  ],
+  "name": "Jarvis Hive Project",
+  "id": "2G8TUKGB9",
+  "defaultInterpreterGroup": "hive",
+  "version": "0.9.0",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
+  "info": {
+    "isRunning": false
+  },
+  "path": "/Jarvis Hive Project"
+}
