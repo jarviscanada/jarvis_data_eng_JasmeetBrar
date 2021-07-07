@@ -27,7 +27,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_JasmeetBra
 
 **Python Data Analytics** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/python_data_analytics)]: Analyzed a company's transaction data and generated reports about their monthly revenue, and their new and existing users. Created an RFM (Recency, Frequency, Monetary) report about their customer base to determine which customers they should expedite more of their energy towards. All analyses were conducted using a Jupyter notebook, and Python was used along with libraries such as Pandas, Matplotlib, NumPy, and SQLAlchemy. Docker was used to run the Postgres container, which is the company's data warehouse.
 
-**Hadoop** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/hadoop)]: Not Started
+**Hadoop** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/hadoop)]: Set up a Hadoop cluster on the Google Cloud Platform to handle and analyze big data, and optimally execute queries. Used Apache Hive to execute HSQL queries, and Apache Zeppelin to store all the results in a notebook. Data was stored in an HDFS volume, and queries were further optimized by using partitioned tables and columnar.
 
 **Spark** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_JasmeetBrar/tree/master/spark)]: Not Started
 

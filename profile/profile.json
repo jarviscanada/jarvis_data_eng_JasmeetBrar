@@ -58,7 +58,7 @@
       "name": "Python Data Analytics"
     },
     {
-      "description": "",
+      "description": "Set up a Hadoop cluster on the Google Cloud Platform to handle and analyze big data, and optimally execute queries. Used Apache Hive to execute HSQL queries, and Apache Zeppelin to store all the results in a notebook. Data was stored in an HDFS volume, and queries were further optimized by using partitioned tables and columnar.",
       "git_url": "/hadoop",
       "name": "Hadoop"
     },
