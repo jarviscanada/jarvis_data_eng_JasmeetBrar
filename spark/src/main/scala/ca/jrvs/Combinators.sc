@@ -15,6 +15,13 @@
 val ls = List.range(0,10)
 //write your solution here
 
+val size = ls.size
+val first = ls.head
+val last = ls.tail
+val firstFive = ls.take(5)
+val lastFive = ls.takeRight(5)
+
+
 
 /**
  * Double each number from the numList and return a flatten list
@@ -25,6 +32,8 @@ val ls = List.range(0,10)
 val numList = List(List(1,2), List(3));
 //write your solution here
 
+val numListFlatThenMap = numList.flatten.map(x => x * 2)
+val numListFlatMap = numList.flatMap(x => x.map(x => x * 2))
 
 
 /**
@@ -35,6 +44,12 @@ val numList = List(List(1,2), List(3));
  * https://stackoverflow.com/questions/7764197/difference-between-foldleft-and-reduceleft-in-scala
  */
 //write your solution here
+
+val numRange = List.range(1, 11)
+
+val sum1 = numRange.sum
+val sum2 = numRange.reduce((x, y) => x + y)
+val sum3 = numRange.foldLeft(0)((x, y) => x + y)
 
 
 /**
@@ -51,6 +66,18 @@ countryMap.get("Amy")
 countryMap.get("edward")
 countryMap.getOrElse("edward", "n/a")
 
+/*
+
+get would get a value if there is any,
+and it will be wrapped in a Some object.
+Otherwise it would be a None object.
+
+getOrElse would directly give you the value
+if there is any or it would give you some
+provided default value if there isn't any.
+
+ */
+
 
 /**
  * Map question2:
@@ -60,6 +87,8 @@ countryMap.getOrElse("edward", "n/a")
  */
 val names = List("Amy", "Sam", "Eric", "Amy")
 //write your solution here
+
+val nameCountries = names.map(name => (name, countryMap.getOrElse(name, "n/a")))
 
 /**
  * Map question3:
