@@ -1,3 +1,5 @@
+import scala.io.Source
+
 /**
  * Count number of elements
  * Get the first element
@@ -12,8 +14,8 @@
  * take
  * tails
  */
+
 val ls = List.range(0,10)
-//write your solution here
 
 val size = ls.size
 val first = ls.head
@@ -21,16 +23,14 @@ val last = ls.tail
 val firstFive = ls.take(5)
 val lastFive = ls.takeRight(5)
 
-
-
 /**
  * Double each number from the numList and return a flatten list
  * e.g.res4: List[Int] = List(2, 3, 4)
  *
  * Compare flatMap VS ls.map().flatten
  */
+
 val numList = List(List(1,2), List(3));
-//write your solution here
 
 val numListFlatThenMap = numList.flatten.map(x => x * 2)
 val numListFlatMap = numList.flatMap(x => x.map(x => x * 2))
@@ -43,7 +43,6 @@ val numListFlatMap = numList.flatMap(x => x.map(x => x * 2))
  * Compare reduce and foldLeft
  * https://stackoverflow.com/questions/7764197/difference-between-foldleft-and-reduceleft-in-scala
  */
-//write your solution here
 
 val numRange = List.range(1, 11)
 
@@ -61,6 +60,7 @@ val sum3 = numRange.foldLeft(0)((x, y) => x + y)
  * countryMap.get("Amy");
  * countryMap.getOrElse("Frank", "n/a");
  */
+
 val countryMap = Map("Amy" -> "Canada", "Sam" -> "US", "Bob" -> "Canada")
 countryMap.get("Amy")
 countryMap.get("edward")
@@ -76,8 +76,7 @@ getOrElse would directly give you the value
 if there is any or it would give you some
 provided default value if there isn't any.
 
- */
-
+*/
 
 /**
  * Map question2:
@@ -85,8 +84,8 @@ provided default value if there isn't any.
  * create a list of (name, country) tuples using `countryMap` and `names`
  * e.g. res2: List[(String, String)] = List((Amy,Canada), (Sam,US), (Eric,n/a), (Amy,Canada))
  */
+
 val names = List("Amy", "Sam", "Eric", "Amy")
-//write your solution here
 
 val nameCountries = names.map(name => (name, countryMap.getOrElse(name, "n/a")))
 
@@ -97,18 +96,17 @@ val nameCountries = names.map(name => (name, countryMap.getOrElse(name, "n/a")))
  * e.g. res0: scala.collection.immutable.Map[String,Int] = Map(Canada -> 2, n/a -> 1, US -> 1)
  * hint: map(get_value_from_map) ; groupBy country; map to (country,count)
  */
-//write your solution here
 
-
-
-
+val numPeopleByCountry = nameCountries.map(tup => tup._2).groupBy(identity).mapValues(_.size)
 
 /**
  * number each name in the list from 1 to n
  * e.g. res3: List[(Int, String)] = List((1,Amy), (2,Bob), (3,Chris))
  */
+
 val names2 = List("Amy", "Bob", "Chris", "Dann")
-//write your solution here
+
+val numberedNames = names2.zipWithIndex.map {case (k, v) => (v + 1, k)}
 
 
 /**
@@ -117,8 +115,8 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * read file lines into a list
  * lines: List[String] = List(id,name,city, 1,amy,toronto, 2,bob,calgary, 3,chris,toronto, 4,dann,montreal)
  */
-//write your solution here
 
+val lines = Source.fromURL(getClass.getResource("/employees.csv")).getLines().drop(1)
 
 /**
  * SQL questions2:
@@ -126,7 +124,16 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * Convert lines to a list of employees
  * e.g. employees: List[Employee] = List(Employee(1,amy,toronto), Employee(2,bob,calgary), Employee(3,chris,toronto), Employee(4,dann,montreal))
  */
-//write your solution here
+
+class Employee(var id: Int, var name: String, var city: String, var age: Int) {
+  override def toString: String =
+    s"Employee($id, $name, $city, $age)"
+}
+
+val employees: List[Employee] = lines.map(line => {
+  val values = line.split(",")
+  new Employee(values(0).toInt, values(1), values(2), values(3).toInt)
+}).toList
 
 
 /**
@@ -139,9 +146,10 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * result:
  * upperCity: List[Employee] = List(Employee(1,amy,TORONTO,20), Employee(2,bob,CALGARY,19), Employee(3,chris,TORONTO,20), Employee(4,dann,MONTREAL,21), Employee(5,eric,TORONTO,22))
  */
-//write your solution here
 
-
+var query1 = employees
+query1.foreach(employee => employee.city = employee.city.toUpperCase)
+query1
 
 /**
  * SQL questions4:
@@ -154,8 +162,10 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * result:
  * res5: List[Employee] = List(Employee(1,amy,TORONTO,20), Employee(3,chris,TORONTO,20), Employee(5,eric,TORONTO,22))
  */
-//write your solution here
 
+var query2 = query1
+query2 = query2.filter(employee => employee.city == "TORONTO")
+query2
 
 /**
  * SQL questions5:
@@ -169,8 +179,9 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * result:
  * cityNum: scala.collection.immutable.Map[String,Int] = Map(CALGARY -> 1, TORONTO -> 3, MONTREAL -> 1)
  */
-//write your solution here
 
+var query3 = query1.groupBy(_.city).mapValues(_.size)
+query3
 
 /**
  * SQL questions6:
@@ -184,4 +195,6 @@ val names2 = List("Amy", "Bob", "Chris", "Dann")
  * result:
  * res6: scala.collection.immutable.Map[(String, Int),Int] = Map((MONTREAL,21) -> 1, (CALGARY,19) -> 1, (TORONTO,20) -> 2, (TORONTO,22) -> 1)
  */
-//write your solution here
+
+var query4 = query1.groupBy(employee => (employee.city, employee.age)).mapValues(_.size)
+query4
