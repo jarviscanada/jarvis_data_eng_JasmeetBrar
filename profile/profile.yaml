@@ -61,7 +61,7 @@ jarvis_projects:
     description: "Analyzed a company's transaction data and generated reports about their monthly revenue, and their new and existing users. Created an RFM (Recency, Frequency, Monetary) report about their customer base to determine which customers they should expedite more of their energy towards. All analyses were conducted using a Jupyter notebook, and Python was used along with libraries such as Pandas, Matplotlib, NumPy, and SQLAlchemy. Docker was used to run the Postgres container, which is the company's data warehouse."
   - name: "Hadoop"
     git_url: "/hadoop"
-    description: ""
+    description: "Set up a Hadoop cluster on the Google Cloud Platform to handle and analyze big data, and optimally execute queries. Used Apache Hive to execute HSQL queries, and Apache Zeppelin to store all the results in a notebook. Data was stored in an HDFS volume, and queries were further optimized by using partitioned tables and columnar."
   - name: "Spark"
     git_url: "/spark"
     description: ""
