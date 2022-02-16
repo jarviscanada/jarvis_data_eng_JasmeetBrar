@@ -95,6 +95,10 @@ professional_experience:
     duration: "2021-present"
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: "Worked on various data projects involving Linux, Bash, Docker, Postgres, Java, and Spring Boot. Followed the scrum agile methodology and used Git and Git Flow in every project. Assisted others in project-related issues, and held daily scrum meetings as a scrum leader."
+  - title: "Data Engineer"
+    company: "Manulife"
+    duration: "2021-2022"
+    description: "Took part of an advanced analytics team to assist various clients with their data-related needs. Created a data pipeline in Python and T-SQL to track data from an ETL and store it in an SCD. Improved their Python library's query execution by 4-5 times by tapping into backend APIs. Generated scripts using SQL server to assist with database migration. Used SSAS to query numbers for a financial report."
   - title: "Software Developer"
     company: "Finneo"
     duration: "2019"

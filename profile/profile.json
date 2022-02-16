@@ -90,6 +90,12 @@
       "title": "Data Engineer"
     },
     {
+      "company": "Manulife",
+      "description": "Took part of an advanced analytics team to assist various clients with their data-related needs. Created a data pipeline in Python and T-SQL to track data from an ETL and store it in an SCD. Improved their Python library's query execution by 4-5 times by tapping into backend APIs. Generated scripts using SQL server to assist with database migration. Used SSAS to query numbers for a financial report.",
+      "duration": "2021-2022",
+      "title": "Data Engineer"
+    },
+    {
       "company": "Finneo",
       "description": "Coordinated with the CEO and the software team on determining the best course of action in enhancing their product to be extensible and maintainable. Migrated and ported features from their site designed with PHP using React, Styled Components, and Ant Design framework. Followed the scrum agile methodology and used JIRA as part of the workflow.",
       "duration": "2019",

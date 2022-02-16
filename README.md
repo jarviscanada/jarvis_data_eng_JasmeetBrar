@@ -46,6 +46,8 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_JasmeetBra
 
 **Data Engineer, Jarvis (2021-present)**: Worked on various data projects involving Linux, Bash, Docker, Postgres, Java, and Spring Boot. Followed the scrum agile methodology and used Git and Git Flow in every project. Assisted others in project-related issues, and held daily scrum meetings as a scrum leader.
 
+**Data Engineer, Manulife (2021-2022)**: Took part of an advanced analytics team to assist various clients with their data-related needs. Created a data pipeline in Python and T-SQL to track data from an ETL and store it in an SCD. Improved their Python library's query execution by 4-5 times by tapping into backend APIs. Generated scripts using SQL server to assist with database migration. Used SSAS to query numbers for a financial report.
+
 **Software Developer, Finneo (2019)**: Coordinated with the CEO and the software team on determining the best course of action in enhancing their product to be extensible and maintainable. Migrated and ported features from their site designed with PHP using React, Styled Components, and Ant Design framework. Followed the scrum agile methodology and used JIRA as part of the workflow.
 
 
